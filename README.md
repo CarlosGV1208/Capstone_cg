@@ -24,3 +24,12 @@ In this Capstone project, we address the following questions:
         <br><br>
         3) <a href="https://data.worldbank.org/" target="_blank">World Bank</a>: This source offers data on various health, inequality, and environmental outcomes.
         These datasets were analyzed with the previously mentioned data.
+        4) To add 
+
+
+### Methodology:
+#### Quantitative analysis:
+
+#### Qualitative analysis:
+
+ 
