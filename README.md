@@ -35,4 +35,6 @@ In this Capstone project, we address the following questions:
 ### b) Qualitative analysis:
 #### - Comparative analysis
 
- 
+ ## Main findings
+
+ ## Conclusion
