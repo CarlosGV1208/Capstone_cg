@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moody's Capstone Project 2025/26 - Executive Presentation</title>
+    <style>
+        /* =========================================
+           GLOBAL STYLES (English Comments)
+           ========================================= */
+        :root {
+            /* Corporate Colors */
+            --lse-red: #E30613;
+            --moodys-blue: #002A54;
+            --dark-grey: #333333;
+            --light-grey: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--light-grey);
+            color: var(--dark-grey);
+            scroll-behavior: smooth; /* Enables smooth scrolling */
+        }
+
+        /* =========================================
+           NAVIGATION MENU (Discreet / Collapsible)
+           ========================================= */
+        /* The Menu Button (Hamburger) */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px; /* Positioned left for easy access */
+            z-index: 1000;
+            background-color: var(--moodys-blue);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: background 0.3s;
+        }
+
+        .menu-btn:hover {
+            background-color: var(--lse-red);
+        }
+
+        /* The Side Navigation Panel */
+        .sidenav {
+            height: 100%;
+            width: 0; /* Hidden by default */
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            background-color: var(--moodys-blue);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #f1f1f1;
+            display: block;
+            transition: 0.3s;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidenav a:hover {
+            color: var(--lse-red);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .sidenav .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        /* =========================================
+           SECTIONS LAYOUT
+           ========================================= */
+        section {
+            min-height: 100vh; /* Each section takes at least full viewport height */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically center content */
+            align-items: center;
+            padding: 60px 40px; /* Padding for readability */
+            box-sizing: border-box;
+            border-bottom: 1px solid #ddd;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        /* Alternating background for visual separation */
+        section:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        /* Container to limit text width for readability */
+        .content-wrapper {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* =========================================
+           TYPOGRAPHY & BRANDING
+           ========================================= */
+        h1 {
+            font-size: 48px;
+            color: var(--lse-red);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: var(--moodys-blue);
+            border-bottom: 3px solid var(--lse-red);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: var(--dark-grey);
+            margin-top: 20px;
+        }
+
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .header-logos {
+            font-size: 14px;
+            color: var(--moodys-blue);
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        /* =========================================
+           SPECIFIC COMPONENTS
+           ========================================= */
+        
+        /* Team Grid */
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .team-member {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-top: 3px solid var(--moodys-blue);
+        }
+        .team-member strong {
+            display: block;
+            color: var(--lse-red);
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        /* Chart Containers */
+        .chart-placeholder {
+            width: 100%;
+            height: 400px; /* Default height for charts */
+            background-color: #fafafa;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .chart-label {
+            color: #888;
+            font-style: italic;
+            pointer-events: none; /* Allows clicking through if chart fails */
+        }
+
+        /* Iframe styling for embedded charts */
+        iframe.dynamic-chart {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer info */
+        .section-footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #999;
+            text-align: right;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <button class="menu-btn" onclick="toggleNav()">&#9776; Menu</button>
+    
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="close-btn" onclick="toggleNav()">&times;</a>
+        <a href="#cover" onclick="toggleNav()">Home</a>
+        <a href="#agenda" onclick="toggleNav()">Agenda</a>
+        <a href="#team" onclick="toggleNav()">Team</a>
+        <a href="#exec-summary" onclick="toggleNav()">Executive Summary</a>
+        <a href="#client-brief" onclick="toggleNav()">Client Brief</a>
+        <a href="#methodology-overview" onclick="toggleNav()">Methodology Overview</a>
+        <a href="#indicators" onclick="toggleNav()">Value Added Indicators</a>
+        <a href="#dual-approach" onclick="toggleNav()">Dual Approach</a>
+        <a href="#deliverables" onclick="toggleNav()">Deliverables</a>
+        <a href="#timeline" onclick="toggleNav()">Timeline</a>
+        <a href="#data-sources" onclick="toggleNav()">Data Sources</a>
+        <a href="#desc-stats" onclick="toggleNav()">Results: Descriptive Stats</a>
+        <a href="#clustering" onclick="toggleNav()">Results: Clustering</a>
+        <a href="#qa" onclick="toggleNav()">Q&A</a>
+    </div>
+
+    <section id="cover">
+        <div class="content-wrapper" style="text-align: center;">
+            <div style="margin-bottom: 20px; font-weight: bold; color: var(--moodys-blue);">
+                LSE | THE LONDON SCHOOL OF ECONOMICS AND POLITICAL SCIENCE
+            </div>
+            <h1>Moody's Capstone Project 2025/26</h1>
+            <h2 style="border: none; font-weight: normal; color: var(--dark-grey);">
+                How successful have emerging market economies been at developing value-added industries from natural resource extraction?
+            </h2>
+            <p style="margin-top: 40px; color: var(--lse-red); font-weight: bold;">
+                School of Public Policy
+            </p>
+        </div>
+    </section>
+
+    <section id="agenda">
+        <div class="content-wrapper">
+            <div class="header-logos">LSE | Moody's Capstone</div>
+            <h2>Timeline of the Project (Agenda)</h2>
+            <ul>
+                <li><strong>Introduction & Status:</strong> Refer to ToR - highlight where we are</li>
+                <li><strong>Data Sources:</strong> Master Data (Variables) - <em>Ayaan</em></li>
+                <li><strong>Methodology:</strong> Lasso-Elastic Net + Random Forest Clustering - <em>Carlos & Ayaan</em></li>
+                <li><strong>Methodology:</strong> Econometrics - <em>Ayaan</em></li>
+                <li><strong>Results:</strong> Descriptive stats - <em>Carlos</em></li>
+                <li><strong>Results:</strong> Clustering - <em>Ayaan</em></li>
+                <li><strong>Results:</strong> ML - <em>Carlos</em></li>
+                <li><strong>Results:</strong> Econ - <em>Ayaan</em></li>
+                <li><strong>Comparison & Recommendations:</strong> <em>Casey</em></li>
+                <li><strong>Looking Forward:</strong> Timeline & Case Study Selection - <em>Ayaan</em></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="content-wrapper">
+            <div class="header-logos">MPA Data Science for Public Policy Candidates</div>
+            <h2>Team Presentation</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <strong>Ayaan Tigdikar</strong>
+                    BSc Economics & Management<br>King's College London
+                </div>
+                <div class="team-member">
+                    <strong>Carlos Levi Gallegos</strong>
+                    Financial Evaluation Analyst<br>Bank of Mexico
+                </div>
+                <div class="team-member">
+                    <strong>Emilio Gonzalez Islas</strong>
+                    Financial Researcher<br>Bank of Mexico
+                </div>
+                <div class="team-member">
+                    <strong>Ignacio Orueta Bennett</strong>
+                    Economist<br>Fiscalía Nacional Económica de Chile
+                </div>
+                <div class="team-member">
+                    <strong>Leonardo Luksic</strong>
+                    BSc International Policy Analysis<br>Bocconi University
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="exec-summary">
+        <div class="content-wrapper">
+            <div class="header-logos">Moody's Capstone 2025/26</div>
+            <h2>Executive Summary</h2>
+            <p>The project's main objective is to develop a data science framework that identifies the economic indicators, institutional conditions, and policy factors that enable or constrain industrial upgrading in resource-rich emerging markets.</p>
+            
+            <h3>Support for Moody's sovereign credit risk assessment:</h3>
+            <ul>
+                <li>Using machine learning techniques to identify cross-country patterns associated with successful value-added industry development.</li>
+                <li>Conducting in-depth case studies to validate and contextualise quantitative findings.</li>
+                <li>Deriving actionable policy lessons that illuminate sovereign credit risk drivers.</li>
+            </ul>
+            
+            <p style="margin-top: 30px; border-left: 4px solid var(--lse-red); padding-left: 15px;">
+                <strong>Deliverables:</strong> Comprehensive research report (LSE), insights report (Moody's), and presentation for Moody's Insights.
+            </p>
+        </div>
+    </section>
+
+    <section id="client-brief">
+        <div class="content-wrapper">
+            <div class="header-logos">LSE</div>
+            <h2>1. Client Brief</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <div>
+                    <h3>1.1 Primary Questions</h3>
+                    <ul>
+                        <li>How successful have emerging market economies been at developing value-added industries from natural resource extraction?</li>
+                        <li>What factors explain why some countries have been more successful than others?</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>1.2 Secondary Questions</h3>
+                    <ul>
+                        <li>What policy levers and institutional conditions support or hinder the transition?</li>
+                        <li>How sustainable are these shifts (fiscal, employment, export)?</li>
+                        <li>How have they supported or hindered credit quality?</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>1.3 Methodologies</h3>
+            <ul>
+                <li><strong>Quantitative:</strong> Cross-country analysis.</li>
+                <li><strong>Qualitative:</strong> Case studies (3-5 EMs with different trajectories).</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="methodology-overview">
+        <div class="content-wrapper">
+            <div class="header-logos">Planning</div>
+            <h2>Topic and Data Overview / Methodology Plan</h2>
+            <ol>
+                <li><strong>Topic and Data Overview:</strong> Literature review, Growth Diagnostics framework.</li>
+                <li><strong>Clustering:</strong> Unsupervised learning to group EMEs based on industrial development trajectories.</li>
+                <li><strong>Quantitative Dual-approach:</strong> Correlation Analysis, OLS, and ML Methods (Random Forest, Lasso, Ridge, Elastic Net).</li>
+                <li><strong>Qualitative Case Studies:</strong> Paired case studies (successful vs unsuccessful).</li>
+                <li><strong>Research Implications:</strong> Linking industrial modernization patterns with credit risk factors.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="indicators">
+        <div class="content-wrapper">
+            <h2>Value Added Indicators (2015-2024)</h2>
+            <ul>
+                <li>Identify indicators to measure value added generated by each country.</li>
+                <li>Classify resource-intensive countries as successful or unsuccessful.</li>
+                <li>Comparative quantitative analysis with previous years (back to 1990) to identify predictors.</li>
+                <li>Use case studies to verify robustness.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="dual-approach">
+        <div class="content-wrapper">
+            <h2>Dual-approach: Econometrics & ML</h2>
+            <div style="display: flex; gap: 40px;">
+                <div style="flex: 1;">
+                    <h3 style="color: var(--lse-red);">1. Literature Review</h3>
+                    <p>Growth Diagnostics framework to identify binding constraints.</p>
+                    <h3 style="color: var(--lse-red);">2. Exploratory Analysis</h3>
+                    <p>Correlation Analysis and OLS to identify predictors of Economic Complexity.</p>
+                </div>
+                <div style="flex: 1;">
+                    <h3 style="color: var(--moodys-blue);">3. Final Models & Results</h3>
+                    <p>Quantify how variables jointly explain differences between "successful" and "unsuccessful" EMEs.</p>
+                    <h3 style="color: var(--moodys-blue);">4. Synthesis & Interpretation</h3>
+                    <p>Focus on interpretability and predictive power (LASSO/Random Forest).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="deliverables">
+        <div class="content-wrapper">
+            <h2>Research Report Deliverables</h2>
+            <div style="display: flex; justify-content: space-between; text-align: center; gap: 20px;">
+                <div style="background: #eee; padding: 30px; flex: 1; border-radius: 8px;">
+                    <h3 style="color: var(--lse-red); margin-top: 0;">1. Research Report</h3>
+                    <p>Comprehensive long-form report: methodology, findings, policy implications.</p>
+                </div>
+                <div style="background: #eef2f5; padding: 30px; flex: 1; border-radius: 8px;">
+                    <h3 style="color: var(--moodys-blue); margin-top: 0;">2. Moody's Report</h3>
+                    <p>Shorter Insight Report focused on key results and credit risk applications.</p>
+                </div>
+                <div style="background: #eee; padding: 30px; flex: 1; border-radius: 8px;">
+                    <h3 style="margin-top: 0;">3. Presentation</h3>
+                    <p>Deck for internal and external audiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline">
+        <div class="content-wrapper">
+            <h2>Project Timeline</h2>
+            <ul>
+                <li><strong>Exploratory Analysis (Oct-Nov 2025):</strong> Literature review, Data cleaning, Cluster analysis (Early patterns).</li>
+                <li><strong>Supervised Modelling (Dec 2025 - Jan 2026):</strong> Build ML models, Identify key predictors, Select case studies.</li>
+                <li><strong>Case Studies & Synthesis (Feb-Mar 2026):</strong> Conduct studies, integrate insights, Final Report.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="data-sources">
+        <div class="content-wrapper">
+            <h2>Data Sources – Master Data (Variables)</h2>
+            <p>Overview of variables and sources used.</p>
+            <div class="chart-placeholder">
+                <span class="chart-label">[DATA SOURCES VISUALIZATION GOES HERE]</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="desc-stats">
+        <div class="content-wrapper">
+            <div class="header-logos">Interactive Analysis</div>
+            <h2>Results - Descriptive Stats</h2>
+            <p>Below are the 4 interactive charts demonstrating our preliminary findings.</p>
+
+            <h3>Chart 1: ECI Trajectories</h3>
+            <div id="dynamic-chart-1" class="chart-placeholder">
+                <span class="chart-label">file:///Users/carloslevigallegosviza/Documents/LSE%202nd%20year/CAPSTONE/Master%20data/descriptive%20stats/eci_gdp_evolution_animated.html</span>
+                
+                </div>
+
+            <h3>Chart 2: Correlation Matrix</h3>
+            <div id="dynamic-chart-2" class="chart-placeholder">
+                <span class="chart-label">CHART 2: INSERT DYNAMIC HTML/IFRAME HERE</span>
+
+                </div>
+
+            <h3>Chart 3: Histogram Distribution</h3>
+            <div id="dynamic-chart-3" class="chart-placeholder">
+                <span class="chart-label">CHART 3: INSERT DYNAMIC HTML/IFRAME HERE</span>
+
+                </div>
+
+            <h3>Chart 4: Geographic Map</h3>
+            <div id="dynamic-chart-4" class="chart-placeholder">
+                <span class="chart-label">CHART 4: INSERT DYNAMIC HTML/IFRAME HERE</span>
+
+                </div>
+
+        </div>
+    </section>
+
+    <section id="clustering">
+        <div class="content-wrapper">
+            <h2>Results - Clustering</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between;">
+                
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Progress So Far</h3>
+                    <ul>
+                        <li><strong>Data Collection:</strong> Clean data, Year availability, Merging datasets, Missing values.</li>
+                        <li><strong>Cluster Analysis:</strong> Variable Selection, PCA, choosing k, validating results.</li>
+                    </ul>
+                </div>
+
+                <div style="flex: 1; min-width: 300px;">
+                    <h3>Cluster Profile Analysis</h3>
+                    <p>Which variables determine every cluster?</p>
+                    <ul>
+                        <li>GDP per capita PPP</li>
+                        <li>Mineral rents (% of GDP)</li>
+                        <li>Natural gas rents (% of GDP)</li>
+                        <li>Oil rents (% of GDP)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="chart-placeholder" style="height: 500px; margin-top: 30px;">
+                <span class="chart-label">[CLUSTERING DENDROGRAM OR SCATTER PLOT]</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="qa">
+        <div class="content-wrapper" style="text-align: center;">
+            <h2>Questions and Answers</h2>
+            <div style="font-size: 100px; color: var(--lse-red); margin: 40px 0;">?</div>
+            <p>Do you have any questions?</p>
+        </div>
+    </section>
+
+    <script>
+        /* Function to open and close the side navigation.
+           It changes the width of the sidenav div.
+        */
+        function toggleNav() {
+            var nav = document.getElementById("mySidenav");
+            if (nav.style.width === "250px") {
+                nav.style.width = "0";
+            } else {
+                nav.style.width = "250px";
+            }
+        }
+    </script>
+
+</body>
+</html>
