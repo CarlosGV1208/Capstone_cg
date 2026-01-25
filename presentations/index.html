@@ -126,7 +126,7 @@
            ========================================= */
         .chart-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 20px;
             width: 100%;
         }
@@ -139,6 +139,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             position: relative;
             transition: transform 0.2s;
+            overflow: hidden;
         }
 
         .chart-card:hover {
@@ -146,13 +147,27 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* Small preview of iframes */
-        .iframe-preview {
+        /* THUMBNAIL MAGIC: 
+           This container scales the content down to 50% so it looks 
+           like a complete miniature instead of a cropped window.
+        */
+        .thumbnail-wrapper {
             width: 100%;
-            height: 300px;
-            border: none;
+            height: 350px; /* Visual height of the card */
             overflow: hidden;
-            pointer-events: none; /* Prevents interaction when small */
+            position: relative;
+        }
+
+        .thumbnail-iframe {
+            width: 200%;       /* Double the width */
+            height: 200%;      /* Double the height */
+            border: none;
+            transform: scale(0.5); /* Shrink by half */
+            transform-origin: 0 0; /* Scale from top-left */
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none; /* Disables scrolling/clicking in preview mode */
         }
 
         .expand-btn {
@@ -166,6 +181,7 @@
             border-radius: 0 0 5px 5px;
             cursor: pointer;
             font-weight: bold;
+            margin-top: 5px;
         }
 
         .expand-btn:hover { background-color: var(--lse-red); }
@@ -179,7 +195,7 @@
         }
 
         .clickable-img {
-            width: 200px; /* Small size initially */
+            width: 200px; 
             cursor: pointer;
             border: 2px solid #ddd;
             border-radius: 5px;
@@ -324,7 +340,7 @@
             <h2>Master Data</h2>
             <p>Tree map visualization of data availability.</p>
 
-            <div style="width: 100%; height: 700px; border: 1px solid #ddd;">
+            <div style="width: 100%; height: 550px; border: 1px solid #ddd;">
                 <iframe 
                     src="https://carlosgv1208.github.io/Capstone_cg/presentations/tree_map_friendly.html" 
                     width="100%" 
@@ -345,25 +361,33 @@
                 
                 <div class="chart-card">
                     <h3>ECI Correlation Heatmap</h3>
-                    <iframe class="iframe-preview" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_correlation_heatmap.html"></iframe>
+                    <div class="thumbnail-wrapper">
+                        <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_correlation_heatmap.html"></iframe>
+                    </div>
                     <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/eci_correlation_heatmap.html', 'iframe')">View Full Screen</button>
                 </div>
 
                 <div class="chart-card">
                     <h3>Evolution: Resource Rich vs Other</h3>
-                    <iframe class="iframe-preview" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_evolution_resource_rich_vs_other.html"></iframe>
+                    <div class="thumbnail-wrapper">
+                        <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_evolution_resource_rich_vs_other.html"></iframe>
+                    </div>
                     <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/eci_evolution_resource_rich_vs_other.html', 'iframe')">View Full Screen</button>
                 </div>
 
                 <div class="chart-card">
                     <h3>ECI Evolution: Selected Countries</h3>
-                    <iframe class="iframe-preview" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_evolution_selected_countries.html"></iframe>
+                    <div class="thumbnail-wrapper">
+                        <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_evolution_selected_countries.html"></iframe>
+                    </div>
                     <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/eci_evolution_selected_countries.html', 'iframe')">View Full Screen</button>
                 </div>
 
                 <div class="chart-card">
                     <h3>Animated GDP & ECI Evolution</h3>
-                    <iframe class="iframe-preview" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_gdp_evolution_animated.html"></iframe>
+                    <div class="thumbnail-wrapper">
+                        <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_gdp_evolution_animated.html"></iframe>
+                    </div>
                     <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/eci_gdp_evolution_animated.html', 'iframe')">View Full Screen</button>
                 </div>
 
@@ -401,11 +425,21 @@
         <div class="content-wrapper">
             <div class="header-logos">Section 7</div>
             <h2>Econometrics Approach</h2>
-            <p>NR: Natural resource intensity in the Economy | Cap: Capital | FE: Country/Year fixed effects | Trade: Trade Openness</p>
-
-            <div style="width: 100%; height: 400px; background: #fafafa; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                <p style="color: #999;">[INSERT EQUATIONS IMAGE OR HTML HERE]</p>
+            
+            <div style="width: 100%; text-align: left; margin-bottom: 20px;">
+                <h3 style="color: var(--lse-red);">Theoretical Background:</h3>
+                <ul>
+                    <li><strong>Structural transformation & industrial upgrading:</strong> Economic Complexity and value-added upgrading (Hidalgo & Hausmann, 2009), combined with the Growth Diagnostics Framework (Hausmann, Rodrik & Velasco, 2005).</li>
+                    <li><strong>Institutions and development:</strong> Institutional economics framework to assess how governance quality shapes development outcomes (Acemoglu & Robinson, 2012).</li>
+                    <li><strong>Natural resource management:</strong> Natural Resource Wealth Management literature to identify conditions for successful management of resource rents (van der Ploeg & Venables, 2012).</li>
+                </ul>
             </div>
+
+            <div style="width: 100%; text-align: center; padding: 20px; background: #fafafa; border: 1px dashed #ccc;">
+                <img src="equation.png" alt="Econometric Equation" style="max-width: 100%; height: auto; border-radius: 5px;">
+               
+            </div>
+
         </div>
     </section>
 
@@ -431,6 +465,7 @@
         <div class="content-wrapper">
             <div class="header-logos">Section 10 - Appendix</div>
             <h2>Timeline</h2>
+            
             <h3>Exploratory Analysis (Oct-Nov 2025)</h3>
             <ul>
                 <li>Kick-off meeting to finalise scope and data arrangements</li>
@@ -438,7 +473,24 @@
                 <li>Data cleaning and preparation</li>
                 <li>Cluster analysis to identify early patterns</li>
             </ul>
-            </div>
+
+            <h3>Supervised Modelling (Dec 2025 - Jan 2026)</h3>
+            <ul>
+                <li>Build and test supervised ML models</li>
+                <li>Identify key predictors of successful industrial upgrading</li>
+                <li>Select countries for case studies</li>
+                <li>Deliverables: Progress report on ML and Econometrics</li>
+            </ul>
+
+            <h3>Case Studies and Synthesis (Feb-Mar 2026)</h3>
+            <ul>
+                <li>Conduct paired case studies</li>
+                <li>Integrate quantitative and qualitative insights</li>
+                <li>Draft final report and presentation materials</li>
+                <li>Final presentation to Moody's (late March 2026)</li>
+            </ul>
+
+        </div>
     </section>
 
     <script>
