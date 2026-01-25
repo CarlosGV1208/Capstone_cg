@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moody's Capstone Project - Meeting 3</title>
+    <style>
+        /* =========================================
+           GLOBAL STYLES
+           ========================================= */
+        :root {
+            /* Corporate Colors */
+            --lse-red: #E30613;
+            --moodys-blue: #002A54;
+            --dark-grey: #333333;
+            --light-grey: #f4f4f4;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--light-grey);
+            color: var(--dark-grey);
+            scroll-behavior: smooth;
+        }
+
+        /* =========================================
+           NAVIGATION MENU
+           ========================================= */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background-color: var(--moodys-blue);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: background 0.3s;
+        }
+
+        .menu-btn:hover {
+            background-color: var(--lse-red);
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            background-color: var(--moodys-blue);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #f1f1f1;
+            display: block;
+            transition: 0.3s;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidenav a:hover {
+            color: var(--lse-red);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .sidenav .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        /* =========================================
+           SECTIONS LAYOUT
+           ========================================= */
+        section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 40px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #ddd;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        section:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        .content-wrapper {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* =========================================
+           TYPOGRAPHY
+           ========================================= */
+        h1 { font-size: 48px; color: var(--lse-red); margin-bottom: 20px; }
+        h2 { font-size: 32px; color: var(--moodys-blue); border-bottom: 3px solid var(--lse-red); padding-bottom: 10px; margin-top: 0; margin-bottom: 30px; }
+        h3 { font-size: 20px; color: var(--dark-grey); margin-top: 10px; margin-bottom: 5px; }
+        p, li { font-size: 18px; line-height: 1.6; margin-bottom: 15px; }
+        .header-logos { font-size: 14px; color: var(--moodys-blue); font-weight: bold; margin-bottom: 5px; text-transform: uppercase; }
+
+        /* =========================================
+           GRID & THUMBNAILS (For Section 5 & 6)
+           ========================================= */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .chart-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .chart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Small preview of iframes */
+        .iframe-preview {
+            width: 100%;
+            height: 300px;
+            border: none;
+            overflow: hidden;
+            pointer-events: none; /* Prevents interaction when small */
+        }
+
+        .expand-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--moodys-blue);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 0 0 5px 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .expand-btn:hover { background-color: var(--lse-red); }
+
+        /* Images row for ML section */
+        .ml-images-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .clickable-img {
+            width: 200px; /* Small size initially */
+            cursor: pointer;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .clickable-img:hover {
+            transform: scale(1.05);
+            border-color: var(--lse-red);
+        }
+
+        /* =========================================
+           MODAL (LIGHTBOX) STYLES
+           ========================================= */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            background-color: rgba(0,0,0,0.9); 
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            height: 90%;
+            max-width: 1400px;
+            border-radius: 5px;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+        }
+
+        /* Specific for images in modal (auto width) */
+        .modal-img {
+            width: auto;
+            height: auto;
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .close-modal:hover { color: var(--lse-red); }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+    </style>
+</head>
+<body>
+
+    <button class="menu-btn" onclick="toggleNav()">&#9776; Menu</button>
+    
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="close-btn" onclick="toggleNav()">&times;</a>
+        <a href="#cover" onclick="toggleNav()">1. Cover</a>
+        <a href="#agenda" onclick="toggleNav()">2. Agenda</a>
+        <a href="#topic-overview" onclick="toggleNav()">3. Topic Recap</a>
+        <a href="#master-data" onclick="toggleNav()">4. Master Data</a>
+        <a href="#desc-stats" onclick="toggleNav()">5. Descriptive Statistics</a>
+        <a href="#ml-approach" onclick="toggleNav()">6. ML Approach</a>
+        <a href="#econometrics" onclick="toggleNav()">7. Econometrics Approach</a>
+        <a href="#findings" onclick="toggleNav()">8. Findings</a>
+        <a href="#next-steps" onclick="toggleNav()">9. Next Steps</a>
+        <a href="#appendix" onclick="toggleNav()">10. Appendix</a>
+    </div>
+
+    <div id="mediaModal" class="modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div id="modalContainer" style="height:100%; width:100%; display:flex; justify-content:center; align-items:center;">
+            </div>
+    </div>
+
+    <section id="cover">
+        <div class="content-wrapper" style="text-align: center;">
+            <div style="margin-bottom: 20px; font-weight: bold; color: var(--moodys-blue);">
+                LSE | THE LONDON SCHOOL OF ECONOMICS AND POLITICAL SCIENCE
+            </div>
+            <h1>Moody's Capstone Project 2025/26</h1>
+            <h2 style="border: none; font-weight: normal; color: var(--dark-grey);">
+                How successful have emerging market economies been at developing value-added industries from natural resource extraction?
+            </h2>
+            <p style="margin-top: 40px; color: var(--lse-red); font-weight: bold;">
+                School of Public Policy
+            </p>
+        </div>
+    </section>
+
+    <section id="agenda">
+        <div class="content-wrapper">
+            <div class="header-logos">LSE | Moody's Capstone</div>
+            <h2>Agenda</h2>
+            <ol>
+                <li>Methodology plan recap</li>
+                <li>Master Data</li>
+                <li>Descriptive statistics</li>
+                <li>ML Approach: Clustering - Lasso - Elastic Net + Random Forest</li>
+                <li>Econometrics Approach</li>
+                <li>Findings</li>
+                <li>Next steps</li>
+                <li>Appendix</li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="topic-overview">
+        <div class="content-wrapper">
+            <div class="header-logos">Section 3</div>
+            <h2>Topic and Data Overview / Methodology Plan</h2>
+            
+            <div style="width: 100%; display: flex; justify-content: center;">
+                <img src="recap.png" alt="Methodology Recap" style="max-width: 100%; height: auto; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            </div>
+
+        </div>
+    </section>
+
+    <section id="master-data">
+        <div class="content-wrapper">
+            <div class="header-logos">Section 4</div>
+            <h2>Master Data</h2>
+            <p>Tree map visualization of data availability.</p>
+
+            <div style="width: 100%; height: 700px; border: 1px solid #ddd;">
+                <iframe 
+                    src="https://carlosgv1208.github.io/Capstone_cg/presentations/tree_map_friendly.html" 
+                    width="100%" 
+                    height="100%" 
+                    frameborder="0">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="desc-stats">
+        <div class="content-wrapper">
+            <div class="header-logos">Section 5 - Interactive Analysis</div>
+            <h2>Descriptive Statistics</h2>
+            <p>Select any chart to view in full screen.</p>
+
+            <div class="chart-grid">
+                
+                <div class="chart-card">
+                    <h3>ECI Correlation Heatmap</h3>
+                    <iframe class="iframe-preview" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_correlation_heatmap.html"></iframe>
+                    <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/eci_correlation_heatmap.html', 'iframe')">View Full Screen</button>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Evolution: Resource Rich vs Other</h3>
+                    <iframe class="iframe-preview" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_evolution_resource_rich_vs_other.html"></iframe>
+                    <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/eci_evolution_resource_rich_vs_other.html', 'iframe')">View Full Screen</button>
+                </div>
+
+                <div class="chart-card">
+                    <h3>ECI Evolution: Selected Countries</h3>
+                    <iframe class="iframe-preview" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_evolution_selected_countries.html"></iframe>
+                    <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/eci_evolution_selected_countries.html', 'iframe')">View Full Screen</button>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Animated GDP & ECI Evolution</h3>
+                    <iframe class="iframe-preview" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_gdp_evolution_animated.html"></iframe>
+                    <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/eci_gdp_evolution_animated.html', 'iframe')">View Full Screen</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="ml-approach">
+        <div class="content-wrapper">
+            <div class="header-logos">Section 6</div>
+            <h2>ML Approach: Clustering - Lasso - Elastic Net + Random Forest</h2>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <img src="MLapproach.png" alt="ML Approach Overview" style="max-width: 100%; height: auto; border-radius: 5px;">
+            </div>
+
+            <p style="text-align: center; font-style: italic;">Select detailed models to expand:</p>
+
+            <div class="ml-images-row">
+                <div style="text-align: center;">
+                    <img src="lasso.png" class="clickable-img" onclick="openModal('lasso.png', 'img')" alt="Lasso Regression">
+                    <p style="font-size: 14px; margin-top: 5px;">Lasso Model</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <img src="rf.png" class="clickable-img" onclick="openModal('rf.png', 'img')" alt="Random Forest">
+                    <p style="font-size: 14px; margin-top: 5px;">Random Forest</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="econometrics">
+        <div class="content-wrapper">
+            <div class="header-logos">Section 7</div>
+            <h2>Econometrics Approach</h2>
+            <p>NR: Natural resource intensity in the Economy | Cap: Capital | FE: Country/Year fixed effects | Trade: Trade Openness</p>
+
+            <div style="width: 100%; height: 400px; background: #fafafa; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
+                <p style="color: #999;">[INSERT EQUATIONS IMAGE OR HTML HERE]</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="findings">
+        <div class="content-wrapper">
+            <div class="header-logos">Section 8</div>
+            <h2>Findings</h2>
+            <div style="width: 100%; height: 400px; background: #fafafa; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
+                <p style="color: #999;">[INSERT FINDINGS CONTENT HERE]</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="next-steps">
+        <div class="content-wrapper">
+            <div class="header-logos">Section 9</div>
+            <h2>Next steps</h2>
+            <p>Discussion on immediate actions and requirements.</p>
+        </div>
+    </section>
+
+    <section id="appendix">
+        <div class="content-wrapper">
+            <div class="header-logos">Section 10 - Appendix</div>
+            <h2>Timeline</h2>
+            <h3>Exploratory Analysis (Oct-Nov 2025)</h3>
+            <ul>
+                <li>Kick-off meeting to finalise scope and data arrangements</li>
+                <li>Literature review and variable selection</li>
+                <li>Data cleaning and preparation</li>
+                <li>Cluster analysis to identify early patterns</li>
+            </ul>
+            </div>
+    </section>
+
+    <script>
+        // --- Navigation Logic ---
+        function toggleNav() {
+            var nav = document.getElementById("mySidenav");
+            if (nav.style.width === "250px") {
+                nav.style.width = "0";
+            } else {
+                nav.style.width = "250px";
+            }
+        }
+
+        // --- Modal / Lightbox Logic ---
+        var modal = document.getElementById("mediaModal");
+        var container = document.getElementById("modalContainer");
+
+        // Function to open modal with either Image or Iframe
+        function openModal(source, type) {
+            modal.style.display = "block";
+            container.innerHTML = ""; // Clear previous content
+
+            if (type === 'img') {
+                // Create Image Element
+                var img = document.createElement("img");
+                img.src = source;
+                img.className = "modal-content modal-img";
+                container.appendChild(img);
+            } else if (type === 'iframe') {
+                // Create Iframe Element
+                var iframe = document.createElement("iframe");
+                iframe.src = source;
+                iframe.className = "modal-content";
+                iframe.style.border = "none";
+                container.appendChild(iframe);
+            }
+        }
+
+        // Close Modal
+        function closeModal() {
+            modal.style.display = "none";
+            container.innerHTML = ""; // Stop iframe from playing in background
+        }
+
+        // Close modal if clicked outside content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
