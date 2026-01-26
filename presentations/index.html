@@ -472,7 +472,7 @@
         </div>
     </section>
 
-<section id="econometrics">
+    <section id="econometrics">
         <div class="content-wrapper">
             <div class="header-logos">Section 4</div>
             <h2>Econometrics Approach</h2>
@@ -480,49 +480,96 @@
             <div style="width: 100%; text-align: left; margin-bottom: 30px;">
                 <h3 style="color: var(--lse-red); margin-bottom: 15px;">Theoretical Background:</h3>
                 <ul>
-                    <li><strong>Structural transformation & industrial upgrading:</strong> Economic Complexity and value-added upgrading (Hidalgo & Hausmann, 2009), combined with the Growth Diagnostics Framework (Hausmann, Rodrik & Velasco, 2005).</li>
-                    <li><strong>Institutions and development:</strong> Institutional economics framework to assess how governance quality shapes development outcomes (Acemoglu & Robinson, 2012).</li>
-                    <li><strong>Natural resource management:</strong> Natural Resource Wealth Management literature to identify conditions for successful management of resource rents (van der Ploeg & Venables, 2012).</li>
+                    <li><strong>Structural transformation:</strong> Economic Complexity (Hidalgo & Hausmann, 2009) + Growth Diagnostics.</li>
+                    <li><strong>Institutions:</strong> Governance quality as a shaper of development (Acemoglu & Robinson).</li>
+                    <li><strong>Resource Management:</strong> Conditions for successful rent management (van der Ploeg).</li>
                 </ul>
             </div>
 
-            <div style="width: 100%; background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--moodys-blue);">
-                
-                <p style="text-align: center; color: #888; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-top: 0;">
-                    Panel Data Fixed Effects Model
-                </p>
-
-                <div style="font-size: 18px; overflow-x: auto; text-align: center; margin: 25px 0; color: var(--dark-grey);">
-                    $$ ECI_{it} = \alpha + \beta_1 NR_{it} + \beta_2 Cap_{it} + \beta_3 (NR_{it} \times Cap_{it}) + \beta_4 Trade_{it} + \beta_5 Inst_{it} + FE_{i} + \epsilon_{it} $$
+            <div style="width: 100%; background: #ffffff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--moodys-blue);">
+                <h4 style="margin-top: 0; color: var(--moodys-blue);">Model 1: Panel Data Fixed Effects</h4>
+                <div style="font-size: 18px; overflow-x: auto; text-align: center; margin: 15px 0; color: var(--dark-grey);">
+                    $$ ECI_{it} = \alpha + \beta_1 NR_{it} + \beta_2 Cap_{it} + \beta_3 Trade_{it} + \beta_4 Inst_{it} + FE_{i} + \epsilon_{it} $$
                 </div>
-
-                <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
-                    <h4 style="margin: 0 0 15px 0; font-size: 16px; color: var(--moodys-blue);">Variable Definitions:</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; font-size: 15px; color: #555;">
-                        <div>
-                            <strong style="color: var(--lse-red);">ECI:</strong> Economic Complexity
-                        </div>
-                        <div>
-                            <strong style="color: var(--lse-red);">NR:</strong> Natural Resource Rents
-                        </div>
-                        <div>
-                            <strong style="color: var(--lse-red);">Cap:</strong> Capital accumulation
-                        </div>
-                        <div>
-                            <strong style="color: var(--lse-red);">Trade:</strong> Trade Openness
-                        </div>
-                        <div>
-                            <strong style="color: var(--lse-red);">Inst:</strong> Institutional Quality
-                        </div>
-                        <div>
-                            <strong style="color: var(--lse-red);">FE:</strong> Country Fixed Effects
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
-            <p>Select chart model to view in full screen.</p>
+            <div style="width: 100%; background: #ffffff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--lse-red);">
+                <h4 style="margin-top: 0; color: var(--lse-red);">Model 2: Interactions (No Lags)</h4>
+                <div style="font-size: 16px; overflow-x: auto; text-align: center; margin: 15px 0; color: var(--dark-grey);">
+                    $$
+                    \begin{aligned}
+                    \log(ECI_{it}) = \beta_0 &+ \beta_1 \log(HCI_{it}) + \beta_2 \log(GFCF_{it}) + \beta_3 \log(Prod_{it}) \\
+                    &+ \beta_4 PolStab_{it} + \beta_5 RuleLaw_{it} + \beta_6 Trade_{it} \\
+                    &+ \beta_7 [\log(HCI_{it}) \times \log(Prod_{it})] \\
+                    &+ \beta_8 [\log(GFCF_{it}) \times \log(Prod_{it})] + \epsilon_{it}
+                    \end{aligned}
+                    $$
+                </div>
+                <p style="font-size: 12px; color: #888; font-style: italic; margin-top: 10px;">
+                    Note: Interaction terms are mean-centered. Standard errors clustered by country.
+                </p>
+            </div>
+
+            <div style="width: 100%; background: #ffffff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--moodys-blue);">
+                <h4 style="margin-top: 0; color: var(--moodys-blue);">Model 3: With Lagged ECI (Persistence)</h4>
+                <div style="font-size: 16px; overflow-x: auto; text-align: center; margin: 15px 0; color: var(--dark-grey);">
+                    $$
+                    \begin{aligned}
+                    \log(ECI_{it}) = \dots &+ \beta_7 [\log(HCI_{it}) \times \log(Prod_{it})] \\
+                    &+ \beta_8 [\log(GFCF_{it}) \times \log(Prod_{it})] \\
+                    &+ \mathbf{\beta_9 \log(ECI_{i,t-1})} + \epsilon_{it}
+                    \end{aligned}
+                    $$
+                </div>
+                <p style="font-size: 12px; color: #888; font-style: italic; margin-top: 10px;">
+                    Includes lagged dependent variable to capture persistence in economic complexity.
+                </p>
+            </div>
+
+            <div style="width: 100%; background: #ffffff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--lse-red);">
+                <h4 style="margin-top: 0; color: var(--lse-red);">Model 4: Fully Lagged Dynamic Panel</h4>
+                <div style="font-size: 16px; overflow-x: auto; text-align: center; margin: 15px 0; color: var(--dark-grey);">
+                    $$
+                    \begin{aligned}
+                    \log(ECI_{it}) = \beta_0 &+ \beta_1 \log(HCI_{i,t-1}) + \beta_2 \log(GFCF_{i,t-1}) + \beta_3 \log(Prod_{i,t-1}) \\
+                    &+ \beta_4 PolStab_{i,t-1} + \beta_5 RuleLaw_{i,t-1} + \beta_6 Trade_{i,t-1} \\
+                    &+ \beta_7 [\dots Interaction_{t-1} \dots] \\
+                    &+ \beta_9 \log(ECI_{i,t-1}) + \epsilon_{it}
+                    \end{aligned}
+                    $$
+                </div>
+                <p style="font-size: 12px; color: #888; font-style: italic; margin-top: 10px;">
+                    All explanatory variables are lagged one period (t-1) to address endogeneity and reverse causality.
+                </p>
+            </div>
+
+            <div style="display: flex; gap: 20px; width: 100%;">
+                
+                <div style="flex: 1; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #eee;">
+                    <h5 style="margin-top: 0; color: var(--moodys-blue);">Variable Definitions</h5>
+                    <ul style="font-size: 14px; padding-left: 20px; line-height: 1.6;">
+                        <li><strong>ECI:</strong> Economic Complexity Index</li>
+                        <li><strong>HCI:</strong> Human Capital Index</li>
+                        <li><strong>GFCF:</strong> Gross Fixed Capital Formation</li>
+                        <li><strong>Prod:</strong> Mineral production value pc</li>
+                        <li><strong>PolStab / RuleLaw:</strong> Institutional Indices</li>
+                    </ul>
+                </div>
+
+                <div style="flex: 1; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #eee;">
+                    <h5 style="margin-top: 0; color: var(--moodys-blue);">Estimation Details</h5>
+                    <ul style="font-size: 14px; padding-left: 20px; line-height: 1.6;">
+                        <li><strong>Method:</strong> Ordinary Least Squares (OLS)</li>
+                        <li><strong>Errors:</strong> Clustered by country</li>
+                        <li><strong>Sample:</strong> Resource-rich countries (mineral prod ≥ $10 pc)</li>
+                        <li><strong>Interactions:</strong> Mean-centered to reduce multicollinearity</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+                    <p>Select chart model to view in full screen.</p>
 
             <div class="chart-grid">
                 
@@ -644,7 +691,6 @@
 
         </div>
     </section>
-
     
     <section id="next-steps">
         <div class="content-wrapper">
