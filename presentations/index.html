@@ -265,6 +265,9 @@
         }
 
     </style>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -313,8 +316,8 @@
                 <li>Methodology plan recap</li>
                 <li>Master Data</li>
                 <li>Descriptive statistics</li>
-                <li>ML Approach: Clustering - Lasso - Ridge - Random Forest</li>
                 <li>Econometrics Approach</li>
+                <li>ML Approach: Clustering - Lasso - Ridge - Random Forest</li>
                 <li>Findings</li>
                 <li>Next steps</li>
                 <li>Appendix</li>
@@ -328,7 +331,7 @@
             <h2>Methodology Plan Recap</h2>
             
             <div style="width: 100%; display: flex; justify-content: center;">
-                <img src="recap.png" alt="Methodology Recap" style="max-width: 100%; height: auto; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <img src="recap.jpg" alt="Methodology Recap" style="max-width: 100%; height: auto; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
             </div>
 
         </div>
@@ -379,6 +382,59 @@
         </div>
     </section>
 
+<section id="econometrics">
+        <div class="content-wrapper">
+            <div class="header-logos">Section 7</div>
+            <h2>Econometrics Approach</h2>
+            
+            <div style="width: 100%; text-align: left; margin-bottom: 30px;">
+                <h3 style="color: var(--lse-red); margin-bottom: 15px;">Theoretical Background:</h3>
+                <ul>
+                    <li><strong>Structural transformation & industrial upgrading:</strong> Economic Complexity and value-added upgrading (Hidalgo & Hausmann, 2009), combined with the Growth Diagnostics Framework (Hausmann, Rodrik & Velasco, 2005).</li>
+                    <li><strong>Institutions and development:</strong> Institutional economics framework to assess how governance quality shapes development outcomes (Acemoglu & Robinson, 2012).</li>
+                    <li><strong>Natural resource management:</strong> Natural Resource Wealth Management literature to identify conditions for successful management of resource rents (van der Ploeg & Venables, 2012).</li>
+                </ul>
+            </div>
+
+            <div style="width: 100%; background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--moodys-blue);">
+                
+                <p style="text-align: center; color: #888; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-top: 0;">
+                    Panel Data Fixed Effects Model
+                </p>
+
+                <div style="font-size: 18px; overflow-x: auto; text-align: center; margin: 25px 0; color: var(--dark-grey);">
+                    $$ ECI_{it} = \alpha + \beta_1 NR_{it} + \beta_2 Cap_{it} + \beta_3 (NR_{it} \times Cap_{it}) + \beta_4 Trade_{it} + \beta_5 Inst_{it} + FE_{i} + \epsilon_{it} $$
+                </div>
+
+                <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+                    <h4 style="margin: 0 0 15px 0; font-size: 16px; color: var(--moodys-blue);">Variable Definitions:</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; font-size: 15px; color: #555;">
+                        <div>
+                            <strong style="color: var(--lse-red);">ECI:</strong> Economic Complexity
+                        </div>
+                        <div>
+                            <strong style="color: var(--lse-red);">NR:</strong> Natural Resource Rents
+                        </div>
+                        <div>
+                            <strong style="color: var(--lse-red);">Cap:</strong> Capital accumulation
+                        </div>
+                        <div>
+                            <strong style="color: var(--lse-red);">Trade:</strong> Trade Openness
+                        </div>
+                        <div>
+                            <strong style="color: var(--lse-red);">Inst:</strong> Institutional Quality
+                        </div>
+                        <div>
+                            <strong style="color: var(--lse-red);">FE:</strong> Country Fixed Effects
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
     <section id="ml-approach">
         <div class="content-wrapper">
             <div class="header-logos">Section 6</div>
@@ -402,38 +458,6 @@
                 </div>
             </div>
 
-        </div>
-    </section>
-
-    <section id="econometrics">
-        <div class="content-wrapper">
-            <div class="header-logos">Section 7</div>
-            <h2>Econometrics Approach</h2>
-            
-            <div style="width: 100%; text-align: left; margin-bottom: 20px;">
-                <h3 style="color: var(--lse-red);">Theoretical Background:</h3>
-                <ul>
-                    <li><strong>Structural transformation & industrial upgrading:</strong> Economic Complexity and value-added upgrading (Hidalgo & Hausmann, 2009), combined with the Growth Diagnostics Framework (Hausmann, Rodrik & Velasco, 2005).</li>
-                    <li><strong>Institutions and development:</strong> Institutional economics framework to assess how governance quality shapes development outcomes (Acemoglu & Robinson, 2012).</li>
-                    <li><strong>Natural resource management:</strong> Natural Resource Wealth Management literature to identify conditions for successful management of resource rents (van der Ploeg & Venables, 2012).</li>
-                </ul>
-            </div>
-
-            <div style="width: 100%; text-align: center; padding: 20px; background: #fafafa; border: 1px dashed #ccc;">
-                <img src="equation.png" alt="Econometric Equation" style="max-width: 100%; height: auto; border-radius: 5px;">
-               
-            </div>
-
-        </div>
-    </section>
-
-    <section id="findings">
-        <div class="content-wrapper">
-            <div class="header-logos">Section 8</div>
-            <h2>Findings</h2>
-            <div style="width: 100%; height: 400px; background: #fafafa; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                <p style="color: #999;">[Comparisons between models]</p>
-            </div>
         </div>
     </section>
 
