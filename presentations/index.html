@@ -264,6 +264,63 @@
             to {opacity: 1;}
         }
 
+        /* =========================================
+           AGENDA STYLES (New)
+           ========================================= */
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 Columns */
+            gap: 20px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .agenda-card {
+            background-color: white;
+            padding: 20px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid var(--moodys-blue); /* Default border color */
+            cursor: default;
+        }
+
+        .agenda-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Alternating accent colors for visual variety */
+        .agenda-card:nth-child(odd) {
+            border-left-color: var(--lse-red);
+        }
+
+        .agenda-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ddd; /* Subtle number color */
+            margin-right: 20px;
+            font-family: 'Arial', sans-serif;
+            min-width: 50px;
+        }
+
+        /* Change number color on hover to match border */
+        .agenda-card:nth-child(odd):hover .agenda-number {
+            color: var(--lse-red);
+        }
+        .agenda-card:nth-child(even):hover .agenda-number {
+            color: var(--moodys-blue);
+        }
+
+        .agenda-text {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--dark-grey);
+            line-height: 1.3;
+        }
+
     </style>
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -312,22 +369,55 @@
         <div class="content-wrapper">
             <div class="header-logos">LSE | Moody's Capstone</div>
             <h2>Agenda</h2>
-            <ol>
-                <li>Methodology plan recap</li>
-                <li>Master Data</li>
-                <li>Descriptive statistics</li>
-                <li>Econometrics Approach</li>
-                <li>ML Approach: Clustering - Lasso - Ridge - Random Forest</li>
-                <li>Findings</li>
-                <li>Next steps</li>
-                <li>Appendix</li>
-            </ol>
+            
+            <div class="agenda-grid">
+                <div class="agenda-card">
+                    <span class="agenda-number">01</span>
+                    <span class="agenda-text">Methodology plan recap</span>
+                </div>
+
+                <div class="agenda-card">
+                    <span class="agenda-number">02</span>
+                    <span class="agenda-text">Master Data</span>
+                </div>
+
+                <div class="agenda-card">
+                    <span class="agenda-number">03</span>
+                    <span class="agenda-text">Descriptive statistics</span>
+                </div>
+
+                <div class="agenda-card">
+                    <span class="agenda-number">04</span>
+                    <span class="agenda-text">Econometrics Approach</span>
+                </div>
+
+                <div class="agenda-card">
+                    <span class="agenda-number">05</span>
+                    <span class="agenda-text">ML Approach: Clustering - Lasso - Ridge - Random Forest</span>
+                </div>
+
+                <div class="agenda-card">
+                    <span class="agenda-number">06</span>
+                    <span class="agenda-text">Findings</span>
+                </div>
+
+                <div class="agenda-card">
+                    <span class="agenda-number">07</span>
+                    <span class="agenda-text">Next steps</span>
+                </div>
+
+                <div class="agenda-card">
+                    <span class="agenda-number">08</span>
+                    <span class="agenda-text">Appendix</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <section id="topic-overview">
         <div class="content-wrapper">
-            <div class="header-logos">Section 3</div>
+            <div class="header-logos">Section 1</div>
             <h2>Methodology Plan Recap</h2>
             
             <div style="width: 100%; display: flex; justify-content: center;">
@@ -339,7 +429,7 @@
 
     <section id="master-data">
         <div class="content-wrapper">
-            <div class="header-logos">Section 4</div>
+            <div class="header-logos">Section 2</div>
             <h2>Master Data</h2>
             <p>Master dataset: 46 variables, 126 countries, 25 years (1995–2019)</p>
 
@@ -356,7 +446,7 @@
 
     <section id="desc-stats">
         <div class="content-wrapper">
-            <div class="header-logos">Section 5 - Analysis</div>
+            <div class="header-logos">Section 3</div>
             <h2>Descriptive Statistics</h2>
             <p>Select any chart to view in full screen.</p>
 
@@ -384,7 +474,7 @@
 
 <section id="econometrics">
         <div class="content-wrapper">
-            <div class="header-logos">Section 7</div>
+            <div class="header-logos">Section 4</div>
             <h2>Econometrics Approach</h2>
             
             <div style="width: 100%; text-align: left; margin-bottom: 30px;">
@@ -437,7 +527,7 @@
 
     <section id="ml-approach">
         <div class="content-wrapper">
-            <div class="header-logos">Section 6</div>
+            <div class="header-logos">Section 5</div>
             <h2>ML Approach: Clustering - Lasso - Ridge - Random Forest</h2>
             
             <div style="text-align: center; margin-bottom: 30px;">
@@ -461,9 +551,17 @@
         </div>
     </section>
 
+    <section id="findings">
+        <div class="content-wrapper">
+            <div class="header-logos">Section 6</div>
+            <h2>findings</h2>
+            <p>...</p>
+        </div>
+    </section>
+
     <section id="next-steps">
         <div class="content-wrapper">
-            <div class="header-logos">Section 9</div>
+            <div class="header-logos">Section 7</div>
             <h2>Next steps</h2>
             <p>...</p>
         </div>
@@ -471,7 +569,7 @@
 
     <section id="appendix">
         <div class="content-wrapper">
-            <div class="header-logos">Section 10 - Appendix</div>
+            <div class="header-logos">Appendix</div>
             <h2>Timeline</h2>
             
             <h3>Exploratory Analysis (Oct-Nov 2025)</h3>
