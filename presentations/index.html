@@ -486,62 +486,26 @@
                 </ul>
             </div>
 
-            <div style="width: 100%; background: #ffffff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--moodys-blue);">
-                <h4 style="margin-top: 0; color: var(--moodys-blue);">Model 1: Panel Data Fixed Effects</h4>
-                <div style="font-size: 18px; overflow-x: auto; text-align: center; margin: 15px 0; color: var(--dark-grey);">
-                    $$ ECI_{it} = \alpha + \beta_1 NR_{it} + \beta_2 Cap_{it} + \beta_3 Trade_{it} + \beta_4 Inst_{it} + FE_{i} + \epsilon_{it} $$
-                </div>
-            </div>
-
-            <div style="width: 100%; background: #ffffff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--lse-red);">
-                <h4 style="margin-top: 0; color: var(--lse-red);">Model 2: Interactions (No Lags)</h4>
-                <div style="font-size: 16px; overflow-x: auto; text-align: center; margin: 15px 0; color: var(--dark-grey);">
-                    $$
-                    \begin{aligned}
-                    \log(ECI_{it}) = \beta_0 &+ \beta_1 \log(HCI_{it}) + \beta_2 \log(GFCF_{it}) + \beta_3 \log(Prod_{it}) \\
-                    &+ \beta_4 PolStab_{it} + \beta_5 RuleLaw_{it} + \beta_6 Trade_{it} \\
-                    &+ \beta_7 [\log(HCI_{it}) \times \log(Prod_{it})] \\
-                    &+ \beta_8 [\log(GFCF_{it}) \times \log(Prod_{it})] + \epsilon_{it}
-                    \end{aligned}
-                    $$
-                </div>
-                <p style="font-size: 12px; color: #888; font-style: italic; margin-top: 10px;">
-                    Note: Interaction terms are mean-centered. Standard errors clustered by country.
-                </p>
-            </div>
 
             <div style="width: 100%; background: #ffffff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--moodys-blue);">
                 <h4 style="margin-top: 0; color: var(--moodys-blue);">Model 3: With Lagged ECI (Persistence)</h4>
                 <div style="font-size: 16px; overflow-x: auto; text-align: center; margin: 15px 0; color: var(--dark-grey);">
                     $$
                     \begin{aligned}
-                    \log(ECI_{it}) = \dots &+ \beta_7 [\log(HCI_{it}) \times \log(Prod_{it})] \\
-                    &+ \beta_8 [\log(GFCF_{it}) \times \log(Prod_{it})] \\
-                    &+ \mathbf{\beta_9 \log(ECI_{i,t-1})} + \epsilon_{it}
+                    \log(ECI_{it}) = \beta_0 &+ \beta_1 \log(HCI_{it}) + \beta_2 \log(GFCF_{it}) + \beta_3 \log(Production_{it}) \\
+                    &+ \beta_4 PoliticalStability_{it} + \beta_5 RuleOfLaw_{it} + \beta_6 Trade_{it} \\
+                    &+ \beta_7 [\log(HCI_{it}) \times \log(Production_{it})] \\
+                    &+ \beta_8 [\log(GFCF_{it}) \times \log(Production_{it})] \\
+                    &+ \beta_9 \log(ECI_{i,t-1}) \\
+                    &+ \epsilon_{it}
                     \end{aligned}
                     $$
                 </div>
                 <p style="font-size: 12px; color: #888; font-style: italic; margin-top: 10px;">
-                    Includes lagged dependent variable to capture persistence in economic complexity.
+                    Includes lagged dependent variable to capture persistence in economic complexity. Standard errors clustered by country.
                 </p>
             </div>
 
-            <div style="width: 100%; background: #ffffff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--lse-red);">
-                <h4 style="margin-top: 0; color: var(--lse-red);">Model 4: Fully Lagged Dynamic Panel</h4>
-                <div style="font-size: 16px; overflow-x: auto; text-align: center; margin: 15px 0; color: var(--dark-grey);">
-                    $$
-                    \begin{aligned}
-                    \log(ECI_{it}) = \beta_0 &+ \beta_1 \log(HCI_{i,t-1}) + \beta_2 \log(GFCF_{i,t-1}) + \beta_3 \log(Prod_{i,t-1}) \\
-                    &+ \beta_4 PolStab_{i,t-1} + \beta_5 RuleLaw_{i,t-1} + \beta_6 Trade_{i,t-1} \\
-                    &+ \beta_7 [\dots Interaction_{t-1} \dots] \\
-                    &+ \beta_9 \log(ECI_{i,t-1}) + \epsilon_{it}
-                    \end{aligned}
-                    $$
-                </div>
-                <p style="font-size: 12px; color: #888; font-style: italic; margin-top: 10px;">
-                    All explanatory variables are lagged one period (t-1) to address endogeneity and reverse causality.
-                </p>
-            </div>
 
             <div style="display: flex; gap: 20px; width: 100%;">
                 
