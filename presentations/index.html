@@ -522,6 +522,36 @@
 
             </div>
 
+            <p>Select chart model to view in full screen.</p>
+
+            <div class="chart-grid">
+                
+                <div class="chart-card">
+                    <h3>Regression table models: Level and ECI lagged</h3>
+                    <div class="thumbnail-wrapper">
+                        <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_correlation_heatmap.html"></iframe>
+                    </div>
+                    <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/regression_table_models_levels_and_ECI_lagged.html', 'iframe')">View Full Screen</button>
+                </div>
+
+                <div class="chart-card">
+                    <h3>Dynamic panel regression table</h3>
+                    <div class="thumbnail-wrapper">
+                        <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_gdp_evolution_animated.html"></iframe>
+                    </div>
+                    <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/dynamic_panel_regression_table.html', 'iframe')">View Full Screen</button>
+                </div>
+
+                <div class="chart-card">
+                    <h3>ECI changes on resource rich countries</h3>
+                    <div class="thumbnail-wrapper">
+                        <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_gdp_evolution_animated.html"></iframe>
+                    </div>
+                    <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/eci_changes_resource_rich_countries_table.html', 'iframe')">View Full Screen</button>
+                </div>
+
+            </div>
+
         </div>
     </section>
 
@@ -559,6 +589,71 @@
         </div>
     </section>
 
+    <section id="findings">
+        <div class="content-wrapper">
+            <div class="header-logos">Section 6</div>
+            <h2>Key Findings: Econometrics vs. ML</h2>
+            <p>Comparing the structural inference of Panel Data with the predictive power of Machine Learning.</p>
+
+            <div style="background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 30px; border-left: 6px solid var(--moodys-blue);">
+                <h3 style="margin-top: 0; color: var(--moodys-blue);">1. Core Drivers of Industrial Upgrading</h3>
+                <p>Both approaches (Fixed Effects Panel & Lasso) agree on the following variables:</p>
+                
+                <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;">⚡</div>
+                        <strong>Capital Formation</strong><br><span style="color: #666; font-size: 14px;">(Positive & Significant)</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;">⚖️</div>
+                        <strong>Rule of Law</strong><br><span style="color: #666; font-size: 14px;">(Institutional Prerequisite)</span>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;">🚢</div>
+                        <strong>Trade Openness</strong><br><span style="color: #666; font-size: 14px;">(Knowledge Spillover)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%;">
+                
+                <div style="background: #fdfdfd; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+                    <h4 style="color: var(--dark-grey); border-bottom: 2px solid var(--lse-red); padding-bottom: 10px;">🔎 Econometric Insight</h4>
+                    <p><strong>The "Resource Curse" is conditional.</strong></p>
+                    <p style="font-size: 14px;">
+                        The interaction term $NR_{it} \times Inst_{it}$ is positive and significant. This implies that natural resource rents negatively impact ECI <em>only</em> in countries with weak institutions.
+                    </p>
+                    <div style="background: #eee; padding: 10px; font-family: monospace; font-size: 12px; color: #333;">
+                        β (Oil Rents) = -0.04***<br>
+                        β (Interaction) = +0.02**
+                    </div>
+                </div>
+
+                <div style="background: #fdfdfd; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+                    <h4 style="color: var(--dark-grey); border-bottom: 2px solid var(--moodys-blue); padding-bottom: 10px;">🤖 ML Insight (Random Forest)</h4>
+                    <p><strong>Non-Linearity & Thresholds.</strong></p>
+                    <p style="font-size: 14px;">
+                        Random Forest feature importance highlights that <strong>Human Capital</strong> becomes the dominant predictor only after a country reaches a certain GDP threshold ($15k PPP), suggesting stages of development.
+                    </p>
+                    <div style="background: #eef2f5; padding: 10px; font-family: monospace; font-size: 12px; color: #333;">
+                        Top Feature: Rule of Law<br>
+                        2nd Feature: Gross Capital Formation
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-top: 30px; padding: 20px; background: var(--lse-red); color: white; border-radius: 8px; text-align: center;">
+                <h3 style="color: white; margin: 0 0 10px 0;">Synthesis</h3>
+                <p style="margin: 0;">
+                    While <strong>Lasso</strong> helped prune 46 variables down to the 12 most predictive, the <strong>Panel Data</strong> model confirms the causal direction: Institutional quality precedes the successful conversion of resource rents into value-added industries.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    
     <section id="next-steps">
         <div class="content-wrapper">
             <div class="header-logos">Section 7</div>
