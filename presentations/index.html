@@ -379,6 +379,119 @@
         .val-negative { color: #e74c3c; font-weight: bold; }
         .num-cell { text-align: right; } /* Align numbers to right */
 
+        /* =========================================
+           TIMELINE STATUS STYLES
+           ========================================= */
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 800px; /* Limit width for better reading */
+            margin-top: 20px;
+            position: relative;
+        }
+
+        /* Line connecting the cards (optional visual aid) */
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            bottom: 20px;
+            width: 4px;
+            background: #eee;
+            z-index: 0;
+        }
+
+        .timeline-card {
+            background: white;
+            padding: 20px 20px 20px 60px; /* Left padding for the line */
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        /* Status Indicators (Circles on the left) */
+        .timeline-card::after {
+            content: '';
+            position: absolute;
+            left: 14px; /* Align with the vertical line */
+            top: 25px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 3px solid white;
+            z-index: 2;
+        }
+
+        /* --- COMPLETED STATE --- */
+        .status-completed {
+            border-left: 5px solid #27ae60; /* Green */
+            opacity: 0.8; /* Slightly faded to show it's past */
+        }
+        .status-completed::after {
+            background-color: #27ae60;
+            box-shadow: 0 0 0 2px #27ae60;
+        }
+        .status-completed h3 {
+            color: #27ae60; /* Green Title */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .status-completed h3::after {
+            content: '✓ DONE';
+            font-size: 12px;
+            background: #27ae60;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 10px;
+        }
+
+        /* --- NEXT STEPS STATE (ACTIVE) --- */
+        .status-active {
+            border-left: 5px solid var(--lse-red);
+            transform: scale(1.02); /* Slightly larger */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .status-active::after {
+            background-color: var(--lse-red);
+            box-shadow: 0 0 0 4px rgba(227, 6, 19, 0.2); /* Glowing effect */
+            width: 20px; /* Bigger dot */
+            height: 20px;
+            left: 12px;
+        }
+        .status-active h3 {
+            color: var(--lse-red);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .status-active h3::after {
+            content: '📍 CURRENT FOCUS';
+            font-size: 12px;
+            background: var(--lse-red);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 10px;
+        }
+
+        /* List Styling inside cards */
+        .timeline-card ul {
+            margin: 10px 0 0 0;
+            padding-left: 20px;
+        }
+        .timeline-card li {
+            margin-bottom: 5px;
+            font-size: 16px;
+            color: #555;
+        }
+
     </style>
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -390,16 +503,16 @@
     
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="close-btn" onclick="toggleNav()">&times;</a>
-        <a href="#cover" onclick="toggleNav()">1. Cover</a>
-        <a href="#agenda" onclick="toggleNav()">2. Agenda</a>
-        <a href="#topic-overview" onclick="toggleNav()">3. Topic Recap</a>
-        <a href="#master-data" onclick="toggleNav()">4. Master Data</a>
-        <a href="#desc-stats" onclick="toggleNav()">5. Descriptive Statistics</a>
-        <a href="#ml-approach" onclick="toggleNav()">6. ML Approach</a>
-        <a href="#econometrics" onclick="toggleNav()">7. Econometrics Approach</a>
-        <a href="#findings" onclick="toggleNav()">8. Findings</a>
-        <a href="#next-steps" onclick="toggleNav()">9. Next Steps</a>
-        <a href="#appendix" onclick="toggleNav()">10. Appendix</a>
+        <a href="#cover" onclick="toggleNav()">Cover</a>
+        <a href="#agenda" onclick="toggleNav()">Agenda</a>
+        <a href="#topic-overview" onclick="toggleNav()">1. Methodology recap</a>
+        <a href="#master-data" onclick="toggleNav()">2. Master Data and ECI</a>
+        <a href="#desc-stats" onclick="toggleNav()">3. Descriptive atatistics</a>
+        <a href="#econometrics" onclick="toggleNav()">4. Econometrics approach</a>
+        <a href="#ml-approach" onclick="toggleNav()">5. ML Approach</a>
+        <a href="#findings" onclick="toggleNav()">6. Comparison of models</a>
+        <a href="#next-steps" onclick="toggleNav()">7. Timeline and next steps</a>
+        <a href="#appendix" onclick="toggleNav()">8. Appendix</a>
     </div>
 
     <div id="mediaModal" class="modal">
@@ -418,7 +531,7 @@
                 How successful have emerging market economies been at developing value-added industries from natural resource extraction?
             </h2>
             <p style="margin-top: 40px; color: var(--lse-red); font-weight: bold;">
-                School of Public Policy
+                MPA Data Science for Public Policy - School of Public Policy
             </p>
         </div>
     </section>
@@ -426,7 +539,7 @@
     <section id="agenda">
         <div class="content-wrapper">
             <div class="header-logos">LSE | Moody's Capstone</div>
-            <h2>Agenda</h2>
+            <h2>Agenda meeting 3</h2>
             
             <div class="agenda-grid">
                 <div class="agenda-card">
@@ -456,12 +569,12 @@
 
                 <div class="agenda-card">
                     <span class="agenda-number">06</span>
-                    <span class="agenda-text">Comparison</span>
+                    <span class="agenda-text">Comparison of models</span>
                 </div>
 
                 <div class="agenda-card">
                     <span class="agenda-number">07</span>
-                    <span class="agenda-text">Next steps</span>
+                    <span class="agenda-text">Timeline and next steps</span>
                 </div>
 
                 <div class="agenda-card">
@@ -509,9 +622,8 @@
             
             <div style="margin-bottom: 30px;">
                 <ul>
-                    <li><strong>Definition:</strong> </li>
-                    <li><strong>Components:</strong> </li>
-                    <li><strong>Relevance:</strong> </li>
+                    <li><strong>Definition</strong> </li>
+                    <li><strong>Why ECI?</strong> </li>
                 </ul>
             </div>
 
@@ -730,7 +842,7 @@
     <section id="ml-approach">
         <div class="content-wrapper">
             <div class="header-logos">Section 5</div>
-            <h2>ML Approaches: Lasso, Ridge, Elastic Net</h2>
+            <h2>ML Approach: Lasso, Ridge, Elastic Net</h2>
             
             <div style="width: 100%; overflow-x: auto; margin-bottom: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
                 <table style="width: 100%; border-collapse: collapse; background-color: white; font-size: 15px; text-align: left;">
@@ -828,15 +940,15 @@
                 
                 <div style="display: flex; justify-content: space-around; margin-top: 20px;">
                     <div style="text-align: center;">
-                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;">⚡</div>
+                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;"></div>
                         <strong>Capital accumulation</strong><br><span style="color: #666; font-size: 14px;">(Positive & Significant)</span>
                     </div>
                     <div style="text-align: center;">
-                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;">⚖️</div>
+                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;"></div>
                         <strong>Rule of Law</strong><br><span style="color: #666; font-size: 14px;">(Institutional Prerequisite)</span>
                     </div>
                     <div style="text-align: center;">
-                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;">🚢</div>
+                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;"></div>
                         <strong>Trade Openness</strong><br><span style="color: #666; font-size: 14px;">(Knowledge Spillover)</span>
                     </div>
                 </div>
@@ -845,7 +957,7 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%;">
                 
                 <div style="background: #fdfdfd; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
-                    <h4 style="color: var(--dark-grey); border-bottom: 2px solid var(--lse-red); padding-bottom: 10px;">🔎 Econometric Insight</h4>
+                    <h4 style="color: var(--dark-grey); border-bottom: 2px solid var(--lse-red); padding-bottom: 10px;">Econometric Insight</h4>
                     <p><strong>Note</strong></p>
                     <p style="font-size: 14px;">
                         Note <em>note</em> note.
@@ -857,7 +969,7 @@
                 </div>
 
                 <div style="background: #fdfdfd; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
-                    <h4 style="color: var(--dark-grey); border-bottom: 2px solid var(--moodys-blue); padding-bottom: 10px;">🤖 ML Insight (Lasso/Ridge/RF)</h4>
+                    <h4 style="color: var(--dark-grey); border-bottom: 2px solid var(--moodys-blue); padding-bottom: 10px;">ML Insight (Lasso/Ridge/RF)</h4>
                     <p><strong>Note</strong></p>
                     <p style="font-size: 14px;">
                         Random Forest feature importance highlights that <strong>Human Capital</strong> becomes the dominant predictor only after a country reaches a certain GDP threshold.
@@ -880,53 +992,59 @@
         </div>
     </section>
     
+
+
     <section id="next-steps">
         <div class="content-wrapper">
             <div class="header-logos">Section 7</div>
-            <h2>Next steps</h2>
-            <h3>Case Studies and Synthesis (Feb-Mar 2026)</h3>
-            <ul>
-                <li>Select countries for case studies</li>
-                <li>Conduct paired case studies</li>
-                <li>Integrate quantitative and qualitative insights</li>
-                <li>Draft final report and presentation materials</li>
-                <li>Final presentation to Moody's (late March 2026)</li>
-            </ul>
+            <h2>Timeline and next steps</h2>
+            
+            <div class="timeline-container">
+                
+                <div class="timeline-card status-completed">
+                    <h3>Exploratory Analysis (Oct-Nov 2025)</h3>
+                    <ul>
+                        <li>Kick-off meeting to finalise scope and data arrangements</li>
+                        <li>Literature review and variable selection</li>
+                        <li>Data cleaning and preparation</li>
+                        <li>Cluster analysis to identify early patterns</li>
+                        <li>Checkpoint meeting: exploratory findings and proposed modelling approach</li>
+                        <li>Deliverables: ToR and progress presentation</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card status-completed">
+                    <h3>Supervised Modelling (Dec 2025 - Jan 2026)</h3>
+                    <ul>
+                        <li>Build and test supervised ML models</li>
+                        <li>Identify key predictors of successful industrial upgrading</li>
+                        <li>Econometric Analysis</li>
+                        <li>Deliverables: Progress report on ML and Econometrics</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card status-active">
+                    <h3>Case Studies and Synthesis (Feb-Mar 2026)</h3>
+                    <ul>
+                        <li>Select countries for case studies</li>
+                        <li>Conduct case studies</li>
+                        <li>Integrate quantitative and qualitative insights</li>
+                        <li>Draft final report and presentation materials</li>
+                        <li>Final presentation to Moody's (late March 2026)</li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
     </section>
 
     <section id="appendix">
         <div class="content-wrapper">
-            <div class="header-logos">Appendix</div>
-            <h2>Timeline</h2>
-            
-            <h3>Exploratory Analysis (Oct-Nov 2025)</h3>
-            <ul>
-                <li>Kick-off meeting to finalise scope and data arrangements</li>
-                <li>Literature review and variable selection</li>
-                <li>Data cleaning and preparation</li>
-                <li>Cluster analysis to identify early patterns</li>
-            </ul>
-
-            <h3>Supervised Modelling (Dec 2025 - Jan 2026)</h3>
-            <ul>
-                <li>Build and test supervised ML models</li>
-                <li>Identify key predictors of successful industrial upgrading</li>
-                <li>Select countries for case studies</li>
-                <li>Deliverables: Progress report on ML and Econometrics</li>
-            </ul>
-
-            <h3>Case Studies and Synthesis (Feb-Mar 2026)</h3>
-            <ul>
-                <li>Conduct paired case studies</li>
-                <li>Integrate quantitative and qualitative insights</li>
-                <li>Draft final report and presentation materials</li>
-                <li>Final presentation to Moody's (late March 2026)</li>
-            </ul>
-
+            <div class="header-logos">Section 8</div>
+             <h2>Appendix</h2>
         </div>
 
-         <div class="chart-card">
+        <div class="chart-card">
                     <h3>ECI vs Mineral Production Evolution</h3>
                     <div class="thumbnail-wrapper">
                         <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/scatter_eci_roduction.html"></iframe>
