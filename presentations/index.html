@@ -726,91 +726,62 @@
         </div>
     </section>
 
-    <section id="ml-approach">
-        <div class="content-wrapper">
-            <div class="header-logos">Section 5</div>
-            <h2>ML Approach: Clustering - Lasso - Ridge - Random Forest</h2>
-            
-            <div style="text-align: center; margin-bottom: 30px;">
-                <img src="ml_app.jpg" alt="ML Approach Overview" style="max-width: 100%; height: auto; border-radius: 5px;">
-            </div>
-
-            <p style="text-align: center; font-style: italic;">Select detailed models to expand:</p>
-
-            <div class="ml-images-row">
-                <div style="text-align: center;">
-                    <img src="lasso.png" class="clickable-img" onclick="openModal('lasso.png', 'img')" alt="Lasso Regression">
-                    <p style="font-size: 14px; margin-top: 5px;">Lasso Model</p>
-                </div>
-                
-                <div style="text-align: center;">
-                    <img src="rf.png" class="clickable-img" onclick="openModal('rf.png', 'img')" alt="Random Forest">
-                    <p style="font-size: 14px; margin-top: 5px;">Random Forest</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
 
     <section id="ml-approach">
         <div class="content-wrapper">
             <div class="header-logos">Section 5</div>
-            <h2>ML Approach: Clustering - Lasso - Ridge - Random Forest</h2>
+            <h2>ML Approach: Lasso, Ridge, Elastic Net</h2>
             
-            <div style="text-align: center; margin-bottom: 40px;">
-                <img src="ml_app.jpg" alt="ML Approach Overview" style="max-width: 100%; height: auto; border-radius: 5px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-            </div>
-
-            <div style="width: 100%; overflow-x: auto; margin-bottom: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-radius: 8px;">
-                <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; background-color: white;">
+            <div style="width: 100%; overflow-x: auto; margin-bottom: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <table style="width: 100%; border-collapse: collapse; background-color: white; font-size: 15px; text-align: left;">
                     <thead>
-                        <tr style="background-color: var(--moodys-blue); color: white; text-align: left;">
-                            <th style="padding: 15px; border-bottom: 1px solid #ddd;">Specification</th>
-                            <th style="padding: 15px; border-bottom: 1px solid #ddd;">Control Variables (X)</th>
-                            <th style="padding: 15px; border-bottom: 1px solid #ddd;">Target Variable (y)</th>
-                            <th style="padding: 15px; border-bottom: 1px solid #ddd;">Fixed Effects</th>
+                        <tr style="background-color: var(--moodys-blue); color: white;">
+                            <th style="padding: 15px; border: 1px solid #ddd; width: 20%;">Feature</th>
+                            <th style="padding: 15px; border: 1px solid #ddd; width: 26%;">LASSO</th>
+                            <th style="padding: 15px; border: 1px solid #ddd; width: 27%;">Ridge</th>
+                            <th style="padding: 15px; border: 1px solid #ddd; width: 27%;">Elastic Net</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 15px; color: var(--lse-red); font-weight: bold;">(1) No lag</td>
-                            <td style="padding: 15px;">All controls at time <em>t</em></td>
-                            <td style="padding: 15px;">ECI at time <em>t</em></td>
-                            <td style="padding: 15px;">Country & Year</td>
+                        <tr>
+                            <td style="padding: 15px; border: 1px solid #ddd; font-weight: bold; background-color: #f9f9f9; color: var(--lse-red);">What it does</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">Removes unimportant variables</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">Reduces the value of unimportant variables</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">Combines both</td>
                         </tr>
-                        <tr style="border-bottom: 1px solid #eee; background-color: #f9f9f9;">
-                            <td style="padding: 15px; color: var(--lse-red); font-weight: bold;">(2) 1 Year lag</td>
-                            <td style="padding: 15px;">All controls at time <em>t-1</em></td>
-                            <td style="padding: 15px;">ECI at time <em>t</em></td>
-                            <td style="padding: 15px;">Country & Year</td>
+                        <tr>
+                            <td style="padding: 15px; border: 1px solid #ddd; font-weight: bold; background-color: #f9f9f9; color: var(--lse-red);">Main strength</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">Creates simpler models</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">Handles high correlation</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">Best of both: Simplicity and stability</td>
                         </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 15px; color: var(--lse-red); font-weight: bold;">(3) 3 Year lag</td>
-                            <td style="padding: 15px;">All controls at time <em>t-3</em></td>
-                            <td style="padding: 15px;">ECI at time <em>t</em></td>
-                            <td style="padding: 15px;">Country & Year</td>
+                        <tr>
+                            <td style="padding: 15px; border: 1px solid #ddd; font-weight: bold; background-color: #f9f9f9; color: var(--lse-red);">Best when</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">You have many potential factors but only a few really matter</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">Most of your factors contribute something useful, even if small</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">You're not sure which approach is better, or you have both scenarios</td>
                         </tr>
-                        <tr style="background-color: #f9f9f9;">
-                            <td style="padding: 15px; color: var(--lse-red); font-weight: bold;">(4) 5 Year lag</td>
-                            <td style="padding: 15px;">All controls at time <em>t-5</em></td>
-                            <td style="padding: 15px;">ECI at time <em>t</em></td>
-                            <td style="padding: 15px;">Country & Year</td>
+                        <tr>
+                            <td style="padding: 15px; border: 1px solid #ddd; font-weight: bold; background-color: #f9f9f9; color: var(--lse-red);">Result</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">A short list of the most important factors</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">A list of all coefficients but tones down the noisy ones</td>
+                            <td style="padding: 15px; border: 1px solid #ddd;">A balanced approach of both methods</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <p style="text-align: center; font-style: italic; color: #666;">Select detailed models to expand:</p>
+            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px;">Select detailed models to expand:</p>
 
-            <div class="ml-images-row">
+            <div class="ml-images-row" style="display: flex; justify-content: center; gap: 30px;">
                 <div style="text-align: center;">
-                    <img src="lasso.png" class="clickable-img" onclick="openModal('lasso.png', 'img')" alt="Lasso Regression" style="cursor: pointer; transition: transform 0.2s;">
-                    <p style="font-size: 14px; margin-top: 5px; font-weight: bold; color: var(--moodys-blue);">Lasso Model</p>
+                    <img src="lasso.png" class="clickable-img" onclick="openModal('lasso.png', 'img')" alt="Lasso Regression" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Lasso Model</p>
                 </div>
                 
                 <div style="text-align: center;">
-                    <img src="rf.png" class="clickable-img" onclick="openModal('rf.png', 'img')" alt="Random Forest" style="cursor: pointer; transition: transform 0.2s;">
-                    <p style="font-size: 14px; margin-top: 5px; font-weight: bold; color: var(--moodys-blue);">Random Forest</p>
+                    <img src="rf.png" class="clickable-img" onclick="openModal('rf.png', 'img')" alt="Random Forest" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Random Forest</p>
                 </div>
             </div>
 
@@ -872,7 +843,7 @@
             </div>
 
             <div style="margin-top: 30px; padding: 20px; background: var(--lse-red); color: white; border-radius: 8px; text-align: center;">
-                <h3 style="color: white; margin: 0 0 10px 0;">Synthesis</h3>
+                <h3 style="color: white; margin: 0 0 10px 0;">Key conclusions</h3>
                 <p style="margin: 0;">
                     While <strong>Lasso</strong> helped to get 46 variables down to the 12 most predictive, the <strong>Panel Data</strong> model confirms the causal direction where institutional quality precedes the successful conversion of resource rents into value-added industries.
                 </p>
