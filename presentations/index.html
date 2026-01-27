@@ -321,6 +321,64 @@
             line-height: 1.3;
         }
 
+        /* =========================================
+           DATA TABLES STYLES
+           ========================================= */
+        .tables-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .table-card {
+            flex: 1;
+            min-width: 300px; /* Responsive stacking */
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .table-wrapper {
+            overflow-x: auto; /* Scroll horizontal if needed on small screens */
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .styled-table th {
+            background-color: var(--moodys-blue);
+            color: white;
+            padding: 12px 10px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .styled-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            color: var(--dark-grey);
+        }
+
+        .styled-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .styled-table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Value highlighting */
+        .val-positive { color: #27ae60; font-weight: bold; }
+        .val-negative { color: #e74c3c; font-weight: bold; }
+        .num-cell { text-align: right; } /* Align numbers to right */
+
     </style>
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -378,7 +436,7 @@
 
                 <div class="agenda-card">
                     <span class="agenda-number">02</span>
-                    <span class="agenda-text">Master Data</span>
+                    <span class="agenda-text">Master Data and ECI</span>
                 </div>
 
                 <div class="agenda-card">
@@ -393,12 +451,12 @@
 
                 <div class="agenda-card">
                     <span class="agenda-number">05</span>
-                    <span class="agenda-text">ML Approach: Clustering - Lasso - Ridge - Random Forest</span>
+                    <span class="agenda-text">ML Approach: Clustering, Lasso, Ridge, Elastic Net</span>
                 </div>
 
                 <div class="agenda-card">
                     <span class="agenda-number">06</span>
-                    <span class="agenda-text">Findings</span>
+                    <span class="agenda-text">Comparison</span>
                 </div>
 
                 <div class="agenda-card">
@@ -446,21 +504,85 @@
 
     <section id="master-data">
         <div class="content-wrapper">
-            <div class="header-logos">Section 3</div>
-            <h2>Economic Complesity Index (ECI)</h2>
-            <ul>
-                <li>Definition:</li>
-                <li>Components:</li>
-                <li>Relevance:</li>
-            </ul>
-
-            <div class="chart-card">
-                    <h3>ECI changes on resource rich countries</h3>
-                    <div class="thumbnail-wrapper">
-                        <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_changes_resource_rich_countries_table.html"></iframe>
-                    </div>
-                    <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/eci_changes_resource_rich_countries_table.html', 'iframe')">View Full Screen</button>
+            <div class="header-logos">Section 4</div>
+            <h2>The Economic Complexity Index (ECI)</h2>
+            
+            <div style="margin-bottom: 30px;">
+                <ul>
+                    <li><strong>Definition:</strong> </li>
+                    <li><strong>Components:</strong> </li>
+                    <li><strong>Relevance:</strong> </li>
+                </ul>
             </div>
+
+            <h3 style="text-align: center; color: var(--moodys-blue); margin-bottom: 20px;">ECI Performance in Resource-Rich Countries (1995-2019)</h3>
+
+            <div class="tables-container">
+                
+                <div class="table-card" style="border-top: 5px solid #27ae60;">
+                    <h4 style="margin-top: 0; color: #27ae60; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                        Top 10 ECI Improvers 📈
+                    </h4>
+                    <div class="table-wrapper">
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Country</th>
+                                    <th class="num-cell">Change</th>
+                                    <th class="num-cell">Prod. Val ($)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Papua N.G.</td><td class="num-cell val-positive">+1.011</td><td class="num-cell">249.9</td></tr>
+                                <tr><td>Viet Nam</td><td class="num-cell val-positive">+0.985</td><td class="num-cell">71.3</td></tr>
+                                <tr><td>Bahrain</td><td class="num-cell val-positive">+0.903</td><td class="num-cell">2,677.9</td></tr>
+                                <tr><td>Malaysia</td><td class="num-cell val-positive">+0.876</td><td class="num-cell">613.4</td></tr>
+                                <tr><td>Iran</td><td class="num-cell val-positive">+0.855</td><td class="num-cell">880.2</td></tr>
+                                <tr><td>Angola</td><td class="num-cell val-positive">+0.710</td><td class="num-cell">780.6</td></tr>
+                                <tr><td>Kuwait</td><td class="num-cell val-positive">+0.676</td><td class="num-cell">12,613.7</td></tr>
+                                <tr><td>Qatar</td><td class="num-cell val-positive">+0.660</td><td class="num-cell">20,294.7</td></tr>
+                                <tr><td>Nigeria</td><td class="num-cell val-positive">+0.609</td><td class="num-cell">195.4</td></tr>
+                                <tr><td>Lao PDR</td><td class="num-cell val-positive">+0.552</td><td class="num-cell">86.4</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="table-card" style="border-top: 5px solid #e74c3c;">
+                    <h4 style="margin-top: 0; color: #e74c3c; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                        Top 10 ECI Decliners 📉
+                    </h4>
+                    <div class="table-wrapper">
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Country</th>
+                                    <th class="num-cell">Change</th>
+                                    <th class="num-cell">Prod. Val ($)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Mozambique</td><td class="num-cell val-negative">-0.395</td><td class="num-cell">32.2</td></tr>
+                                <tr><td>Bolivia</td><td class="num-cell val-negative">-0.399</td><td class="num-cell">281.6</td></tr>
+                                <tr><td>Algeria</td><td class="num-cell val-negative">-0.493</td><td class="num-cell">878.8</td></tr>
+                                <tr><td>Mongolia</td><td class="num-cell val-negative">-0.609</td><td class="num-cell">665.8</td></tr>
+                                <tr><td>Azerbaijan</td><td class="num-cell val-negative">-0.680</td><td class="num-cell">1,098.4</td></tr>
+                                <tr><td>Zimbabwe</td><td class="num-cell val-negative">-0.806</td><td class="num-cell">38.9</td></tr>
+                                <tr><td>Iraq</td><td class="num-cell val-negative">-1.053</td><td class="num-cell">1,048.5</td></tr>
+                                <tr><td>Libya</td><td class="num-cell val-negative">-1.116</td><td class="num-cell">2,910.1</td></tr>
+                                <tr><td>Chad</td><td class="num-cell val-negative">-1.134</td><td class="num-cell">95.3</td></tr>
+                                <tr><td>Venezuela</td><td class="num-cell val-negative">-1.560</td><td class="num-cell">1,466.0</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            
+            <p style="text-align: center; font-size: 12px; color: #888; margin-top: 15px;">
+                *Avg. Production Value Per Capita (USD). Note: High resource dependence (e.g. Venezuela, Libya) often correlates with steep ECI declines.
+            </p>
+
         </div>
     </section>
 
