@@ -730,7 +730,7 @@
     <section id="ml-approach">
         <div class="content-wrapper">
             <div class="header-logos">Section 5</div>
-            <h2>ML Approach: Lasso, Ridge, Elastic Net</h2>
+            <h2>ML Approaches: Lasso, Ridge, Elastic Net</h2>
             
             <div style="width: 100%; overflow-x: auto; margin-bottom: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
                 <table style="width: 100%; border-collapse: collapse; background-color: white; font-size: 15px; text-align: left;">
@@ -771,17 +771,45 @@
                 </table>
             </div>
 
-            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px;">Select detailed models to expand:</p>
+            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px;">Model 1. Variables at levels</p>
 
             <div class="ml-images-row" style="display: flex; justify-content: center; gap: 30px;">
                 <div style="text-align: center;">
-                    <img src="lasso.png" class="clickable-img" onclick="openModal('lasso.png', 'img')" alt="Lasso Regression" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
-                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Lasso Model</p>
+                    <img src="ML_model_1_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_1_resource_rich.png', 'img')" alt="Model 1 comparison" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model comparison</p>
                 </div>
                 
                 <div style="text-align: center;">
-                    <img src="rf.png" class="clickable-img" onclick="openModal('rf.png', 'img')" alt="Random Forest" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
-                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Random Forest</p>
+                    <img src="coefs_model1_resource_rich.png" class="clickable-img" onclick="openModal('coefs_model1_resource_rich.png', 'img')" alt="Model 1 coefficients" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model coefficients</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px;">Model 2. Adding ECI lag</p>
+
+            <div class="ml-images-row" style="display: flex; justify-content: center; gap: 30px;">
+                <div style="text-align: center;">
+                    <img src="ML_model_2_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_2_resource_rich.png', 'img')" alt="Model 2 comparison" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model comparison</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <img src="coefs_model2_resource_rich.png" class="clickable-img" onclick="openModal('coefs_model2_resource_rich.png', 'img')" alt="Model 2 coefficients" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model coefficients</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px;">Model 3. All lagged vars</p>
+
+            <div class="ml-images-row" style="display: flex; justify-content: center; gap: 30px;">
+                <div style="text-align: center;">
+                    <img src="ML_model_3_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_3_resource_rich.png', 'img')" alt="Model 2 comparison" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model comparison</p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <img src="coefs_model3_resource_rich.png" class="clickable-img" onclick="openModal('coefs_model3_resource_rich.png', 'img')" alt="Model 2 coefficients" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model coefficients</p>
                 </div>
             </div>
 
