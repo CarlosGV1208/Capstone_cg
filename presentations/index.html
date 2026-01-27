@@ -87,7 +87,7 @@
         }
 
         /* =========================================
-           SECTIONS LAYOUT
+           SECTIONS LAYOUT & ALIGNMENT
            ========================================= */
         section {
             min-height: 100vh;
@@ -110,16 +110,76 @@
         .content-wrapper {
             max-width: 1100px;
             width: 100%;
+            /* Ensure content inside wrapper is properly aligned */
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
+        
+        /* Utility to align text left inside the centered wrapper when needed */
+        .content-wrapper > div, 
+        .content-wrapper > p, 
+        .content-wrapper > h3 {
+            width: 100%; /* Take full width of max-width */
         }
 
         /* =========================================
            TYPOGRAPHY
            ========================================= */
-        h1 { font-size: 48px; color: var(--lse-red); margin-bottom: 20px; }
-        h2 { font-size: 32px; color: var(--moodys-blue); border-bottom: 3px solid var(--lse-red); padding-bottom: 10px; margin-top: 0; margin-bottom: 30px; }
-        h3 { font-size: 20px; color: var(--dark-grey); margin-top: 10px; margin-bottom: 5px; }
+        h1 { font-size: 48px; color: var(--lse-red); margin-bottom: 20px; text-align: center; }
+        h2 { font-size: 32px; color: var(--moodys-blue); border-bottom: 3px solid var(--lse-red); padding-bottom: 10px; margin-top: 0; margin-bottom: 30px; text-align: center; width: 100%; }
+        h3 { font-size: 20px; color: var(--dark-grey); margin-top: 10px; margin-bottom: 5px; text-align: center; }
         p, li { font-size: 18px; line-height: 1.6; margin-bottom: 15px; }
-        .header-logos { font-size: 14px; color: var(--moodys-blue); font-weight: bold; margin-bottom: 5px; text-transform: uppercase; }
+        .header-logos { font-size: 14px; color: var(--moodys-blue); font-weight: bold; margin-bottom: 5px; text-transform: uppercase; width: 100%; text-align: center; }
+
+        /* =========================================
+           TEAM SECTION (PORTADA)
+           ========================================= */
+        .team-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        .team-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 160px;
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; /* Circular photo */
+            object-fit: cover;
+            border: 4px solid var(--moodys-blue);
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover .team-photo {
+            transform: scale(1.05);
+            border-color: var(--lse-red);
+        }
+
+        .team-link {
+            text-decoration: none;
+            color: var(--moodys-blue);
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .team-link:hover {
+            color: var(--lse-red);
+            text-decoration: underline;
+        }
 
         /* =========================================
            GRID & THUMBNAILS (For Section 5 & 6)
@@ -127,61 +187,63 @@
         .chart-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 20px;
+            gap: 30px; /* Increased gap for aesthetics */
             width: 100%;
+            justify-content: center;
         }
 
         .chart-card {
             background: white;
             border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Softer shadow */
             position: relative;
             transition: transform 0.2s;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .chart-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
-        /* THUMBNAIL MAGIC: 
-           This container scales the content down to 50% so it looks 
-           like a complete miniature instead of a cropped window.
-        */
         .thumbnail-wrapper {
             width: 100%;
-            height: 350px; /* Visual height of the card */
+            height: 350px;
             overflow: hidden;
             position: relative;
+            background: #fafafa;
         }
 
         .thumbnail-iframe {
-            width: 200%;       /* Double the width */
-            height: 200%;      /* Double the height */
+            width: 200%;
+            height: 200%;
             border: none;
-            transform: scale(0.5); /* Shrink by half */
-            transform-origin: 0 0; /* Scale from top-left */
+            transform: scale(0.5);
+            transform-origin: 0 0;
             position: absolute;
             top: 0;
             left: 0;
-            pointer-events: none; /* Disables scrolling/clicking in preview mode */
+            pointer-events: none;
         }
 
         .expand-btn {
             display: block;
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: var(--moodys-blue);
             color: white;
             text-align: center;
             border: none;
-            border-radius: 0 0 5px 5px;
+            border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            margin-top: 5px;
+            margin-top: 10px;
+            font-size: 14px;
         }
 
         .expand-btn:hover { background-color: var(--lse-red); }
@@ -190,25 +252,30 @@
         .ml-images-row {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
         }
 
         .clickable-img {
-            width: 200px; 
+            width: 220px; 
             cursor: pointer;
-            border: 2px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 5px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: transform 0.3s, border-color 0.3s;
         }
 
         .clickable-img:hover {
             transform: scale(1.05);
             border-color: var(--lse-red);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         /* =========================================
-           MODAL (LIGHTBOX) STYLES
+           MODAL (LIGHTBOX) STYLES - UPDATED FOR AESTHETICS
            ========================================= */
         .modal {
             display: none; 
@@ -219,45 +286,62 @@
             width: 100%; 
             height: 100%; 
             overflow: hidden; 
-            background-color: rgba(0,0,0,0.9); 
+            background-color: rgba(0,0,0,0.85); /* Slightly darker background */
             animation: fadeIn 0.3s;
+            backdrop-filter: blur(5px); /* Modern blur effect */
         }
 
+        /* Updated Container Logic to Center content */
+        #modalContainer {
+            height: 100%; 
+            width: 100%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            padding: 40px; /* Padding so it doesn't touch screen edges */
+            box-sizing: border-box;
+        }
+
+        /* Standard aesthetic frame for both images and iframes */
         .modal-content {
             margin: auto;
             display: block;
-            width: 90%;
-            height: 90%;
-            max-width: 1400px;
-            border-radius: 5px;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
             background: white;
+            padding: 10px; /* White frame border */
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Specific for images in modal (auto width) */
-        .modal-img {
+        /* Specific sizing for Images in modal */
+        img.modal-content {
             width: auto;
             height: auto;
-            max-width: 95%;
-            max-height: 95%;
+            max-width: 90vw;  /* Max width of viewport */
+            max-height: 85vh; /* Max height of viewport */
             object-fit: contain;
+        }
+
+        /* Specific sizing for Iframes (Charts) in modal */
+        iframe.modal-content {
+            width: 85vw; /* Large width for charts */
+            height: 85vh; /* Large height for charts */
+            max-width: 1200px; /* Reasonable max limit */
+            border: none;
         }
 
         .close-modal {
             position: absolute;
-            top: 15px;
-            right: 35px;
+            top: 20px;
+            right: 40px;
             color: #f1f1f1;
-            font-size: 40px;
+            font-size: 45px;
             font-weight: bold;
             transition: 0.3s;
             cursor: pointer;
             z-index: 2001;
         }
 
-        .close-modal:hover { color: var(--lse-red); }
+        .close-modal:hover { color: var(--lse-red); transform: scale(1.1); }
 
         @keyframes fadeIn {
             from {opacity: 0;}
@@ -265,12 +349,12 @@
         }
 
         /* =========================================
-           AGENDA STYLES (New)
+           AGENDA STYLES
            ========================================= */
         .agenda-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 Columns */
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 25px;
             width: 100%;
             margin-top: 30px;
         }
@@ -283,7 +367,7 @@
             display: flex;
             align-items: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-left: 5px solid var(--moodys-blue); /* Default border color */
+            border-left: 5px solid var(--moodys-blue);
             cursor: default;
         }
 
@@ -292,27 +376,19 @@
             box-shadow: 0 8px 15px rgba(0,0,0,0.1);
         }
 
-        /* Alternating accent colors for visual variety */
-        .agenda-card:nth-child(odd) {
-            border-left-color: var(--lse-red);
-        }
+        .agenda-card:nth-child(odd) { border-left-color: var(--lse-red); }
 
         .agenda-number {
             font-size: 32px;
             font-weight: bold;
-            color: #ddd; /* Subtle number color */
+            color: #ddd;
             margin-right: 20px;
             font-family: 'Arial', sans-serif;
             min-width: 50px;
         }
 
-        /* Change number color on hover to match border */
-        .agenda-card:nth-child(odd):hover .agenda-number {
-            color: var(--lse-red);
-        }
-        .agenda-card:nth-child(even):hover .agenda-number {
-            color: var(--moodys-blue);
-        }
+        .agenda-card:nth-child(odd):hover .agenda-number { color: var(--lse-red); }
+        .agenda-card:nth-child(even):hover .agenda-number { color: var(--moodys-blue); }
 
         .agenda-text {
             font-size: 18px;
@@ -322,7 +398,7 @@
         }
 
         /* =========================================
-           DATA TABLES STYLES
+           DATA TABLES STYLES (Aligned)
            ========================================= */
         .tables-container {
             display: flex;
@@ -330,69 +406,44 @@
             gap: 30px;
             width: 100%;
             margin-top: 20px;
+            justify-content: center; /* Center tables */
         }
 
         .table-card {
             flex: 1;
-            min-width: 300px; /* Responsive stacking */
+            min-width: 400px; 
+            max-width: 600px;
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .table-wrapper {
-            overflow-x: auto; /* Scroll horizontal if needed on small screens */
-        }
-
-        .styled-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-            text-align: left;
-        }
-
-        .styled-table th {
-            background-color: var(--moodys-blue);
-            color: white;
-            padding: 12px 10px;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .styled-table td {
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-            color: var(--dark-grey);
-        }
-
-        .styled-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .styled-table tr:hover {
-            background-color: #f9f9f9;
-        }
-
-        /* Value highlighting */
+        .table-wrapper { overflow-x: auto; }
+        
+        .styled-table { width: 100%; border-collapse: collapse; font-size: 14px; text-align: left; }
+        .styled-table th { background-color: var(--moodys-blue); color: white; padding: 12px 15px; font-weight: 600; white-space: nowrap; }
+        .styled-table td { padding: 12px 15px; border-bottom: 1px solid #eee; color: var(--dark-grey); }
+        .styled-table tr:last-child td { border-bottom: none; }
+        .styled-table tr:hover { background-color: #f9f9f9; }
         .val-positive { color: #27ae60; font-weight: bold; }
         .val-negative { color: #e74c3c; font-weight: bold; }
-        .num-cell { text-align: right; } /* Align numbers to right */
+        .num-cell { text-align: right; }
 
         /* =========================================
-           TIMELINE STATUS STYLES
+           TIMELINE STYLES
            ========================================= */
         .timeline-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
             width: 100%;
-            max-width: 800px; /* Limit width for better reading */
+            max-width: 800px;
             margin-top: 20px;
             position: relative;
+            margin-left: auto; margin-right: auto; /* Center timeline */
         }
-
-        /* Line connecting the cards (optional visual aid) */
+        /* ... (rest of timeline styles same as previous, just ensuring centering) ... */
         .timeline-container::before {
             content: '';
             position: absolute;
@@ -403,22 +454,19 @@
             background: #eee;
             z-index: 0;
         }
-
         .timeline-card {
             background: white;
-            padding: 20px 20px 20px 60px; /* Left padding for the line */
+            padding: 20px 20px 20px 60px;
             border-radius: 8px;
             position: relative;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
             z-index: 1;
         }
-
-        /* Status Indicators (Circles on the left) */
         .timeline-card::after {
             content: '';
             position: absolute;
-            left: 14px; /* Align with the vertical line */
+            left: 14px;
             top: 25px;
             width: 16px;
             height: 16px;
@@ -426,71 +474,18 @@
             border: 3px solid white;
             z-index: 2;
         }
+        .status-completed { border-left: 5px solid #27ae60; opacity: 0.8; }
+        .status-completed::after { background-color: #27ae60; box-shadow: 0 0 0 2px #27ae60; }
+        .status-completed h3 { color: #27ae60; display: flex; align-items: center; justify-content: space-between; }
+        .status-completed h3::after { content: '✓ DONE'; font-size: 12px; background: #27ae60; color: white; padding: 2px 8px; border-radius: 10px; margin-left: 10px; }
+        
+        .status-active { border-left: 5px solid var(--lse-red); transform: scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .status-active::after { background-color: var(--lse-red); box-shadow: 0 0 0 4px rgba(227, 6, 19, 0.2); width: 20px; height: 20px; left: 12px; }
+        .status-active h3 { color: var(--lse-red); display: flex; align-items: center; justify-content: space-between; }
+        .status-active h3::after { content: '📍 CURRENT FOCUS'; font-size: 12px; background: var(--lse-red); color: white; padding: 2px 8px; border-radius: 10px; margin-left: 10px; }
 
-        /* --- COMPLETED STATE --- */
-        .status-completed {
-            border-left: 5px solid #27ae60; /* Green */
-            opacity: 0.8; /* Slightly faded to show it's past */
-        }
-        .status-completed::after {
-            background-color: #27ae60;
-            box-shadow: 0 0 0 2px #27ae60;
-        }
-        .status-completed h3 {
-            color: #27ae60; /* Green Title */
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .status-completed h3::after {
-            content: '✓ DONE';
-            font-size: 12px;
-            background: #27ae60;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 10px;
-            margin-left: 10px;
-        }
-
-        /* --- NEXT STEPS STATE (ACTIVE) --- */
-        .status-active {
-            border-left: 5px solid var(--lse-red);
-            transform: scale(1.02); /* Slightly larger */
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        .status-active::after {
-            background-color: var(--lse-red);
-            box-shadow: 0 0 0 4px rgba(227, 6, 19, 0.2); /* Glowing effect */
-            width: 20px; /* Bigger dot */
-            height: 20px;
-            left: 12px;
-        }
-        .status-active h3 {
-            color: var(--lse-red);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .status-active h3::after {
-            content: '📍 CURRENT FOCUS';
-            font-size: 12px;
-            background: var(--lse-red);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 10px;
-            margin-left: 10px;
-        }
-
-        /* List Styling inside cards */
-        .timeline-card ul {
-            margin: 10px 0 0 0;
-            padding-left: 20px;
-        }
-        .timeline-card li {
-            margin-bottom: 5px;
-            font-size: 16px;
-            color: #555;
-        }
+        .timeline-card ul { margin: 10px 0 0 0; padding-left: 20px; }
+        .timeline-card li { margin-bottom: 5px; font-size: 16px; color: #555; }
 
     </style>
 
@@ -517,7 +512,7 @@
 
     <div id="mediaModal" class="modal">
         <span class="close-modal" onclick="closeModal()">&times;</span>
-        <div id="modalContainer" style="height:100%; width:100%; display:flex; justify-content:center; align-items:center;">
+        <div id="modalContainer">
             </div>
     </div>
 
@@ -530,9 +525,33 @@
             <h2 style="border: none; font-weight: normal; color: var(--dark-grey);">
                 How successful have emerging market economies been at developing value-added industries from natural resource extraction?
             </h2>
-            <p style="margin-top: 40px; color: var(--lse-red); font-weight: bold;">
+            <p style="margin-top: 20px; color: var(--lse-red); font-weight: bold;">
                 MPA Data Science for Public Policy - School of Public Policy
             </p>
+
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="ayaan.jpg" alt="Ayaan Tigdikar" class="team-photo">
+                    <a href="https://www.linkedin.com/in/ayaan-tigdikar/" target="_blank" class="team-link">Ayaan Tigdikar</a>
+                </div>
+                <div class="team-member">
+                    <img src="carlos.jpg" alt="Carlos Levi Gallegos Viza" class="team-photo">
+                    <a href="https://www.linkedin.com/in/carlos-levi-gallegos-viza-806810172/" target="_blank" class="team-link">Carlos Levi Gallegos Viza</a>
+                </div>
+                <div class="team-member">
+                    <img src="emilio.jpg" alt="Emilio Gonzalez Islas" class="team-photo">
+                    <a href="https://www.linkedin.com/in/emilio-gonzalez-islas/" target="_blank" class="team-link">Emilio Gonzalez Islas</a>
+                </div>
+                <div class="team-member">
+                    <img src="ignacio.jpg" alt="Ignacio Orueta Bennet" class="team-photo">
+                    <a href="https://www.linkedin.com/in/ignacio-orueta-bennett-586b85186/" target="_blank" class="team-link">Ignacio Orueta Bennet</a>
+                </div>
+                <div class="team-member">
+                    <img src="leo.jpg" alt="Leonardo Luksic" class="team-photo">
+                    <a href="https://www.linkedin.com/in/leonardo-luksic-3b9251240/" target="_blank" class="team-link">Leonardo Luksic</a>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -591,8 +610,8 @@
             <div class="header-logos">Section 1</div>
             <h2>Methodology Plan Recap</h2>
             
-            <div style="width: 100%; display: flex; justify-content: center;">
-                <img src="recap.jpg" alt="Methodology Recap" style="max-width: 100%; height: auto; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <div style="width: 100%; display: flex; justify-content: center; margin-top: 20px;">
+                <img src="recap.jpg" alt="Methodology Recap" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
             </div>
 
         </div>
@@ -602,9 +621,9 @@
         <div class="content-wrapper">
             <div class="header-logos">Section 2</div>
             <h2>Master Data</h2>
-            <p>Master dataset: 46 variables, 126 countries, 25 years (1995–2019)</p>
+            <p style="text-align: center;">Master dataset: 46 variables, 126 countries, 25 years (1995–2019)</p>
 
-            <div style="width: 100%; height: 550px; border: 1px solid #ddd;">
+            <div style="width: 100%; height: 550px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 <iframe 
                     src="https://carlosgv1208.github.io/Capstone_cg/presentations/tree_map_compact_stats.html" 
                     width="100%" 
@@ -615,12 +634,12 @@
         </div>
     </section>
 
-    <section id="master-data">
+    <section id="master-data-eci">
         <div class="content-wrapper">
             <div class="header-logos"></div>
             <h2>The Economic Complexity Index (ECI)</h2>
             
-            <div style="margin-bottom: 30px;">
+            <div style="margin-bottom: 30px; width: 100%;">
                 <ul>
                     <li><strong>Definition</strong> </li>
                     <li><strong>Why ECI?</strong> </li>
@@ -633,7 +652,7 @@
                 
                 <div class="table-card" style="border-top: 5px solid #27ae60;">
                     <h4 style="margin-top: 0; color: #27ae60; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-                        Top 10 ECI Improvers 📈
+                        Top 10 ECI Improvers
                     </h4>
                     <div class="table-wrapper">
                         <table class="styled-table">
@@ -662,7 +681,7 @@
 
                 <div class="table-card" style="border-top: 5px solid #e74c3c;">
                     <h4 style="margin-top: 0; color: #e74c3c; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-                        Top 10 ECI Decliners 📉
+                        Top 10 ECI Decliners
                     </h4>
                     <div class="table-wrapper">
                         <table class="styled-table">
@@ -691,10 +710,6 @@
 
             </div>
             
-            <p style="text-align: center; font-size: 12px; color: #888; margin-top: 15px;">
-                *Avg. Production Value Per Capita (USD). Note: High resource dependence (e.g. Venezuela, Libya) often correlates with steep ECI declines.
-            </p>
-
         </div>
     </section>
 
@@ -702,7 +717,7 @@
         <div class="content-wrapper">
             <div class="header-logos">Section 3</div>
             <h2>Descriptive Statistics</h2>
-            <p>Select any chart to view in full screen.</p>
+            <p style="text-align: center;">Select any chart to view in full screen.</p>
 
             <div class="chart-grid">
                 
@@ -758,7 +773,7 @@
 
 
             <div style="width: 100%; background: #ffffff; padding: 25px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--moodys-blue);">
-                <h4 style="margin-top: 0; color: var(--moodys-blue);">Model 3: With Lagged ECI (Persistence)</h4>
+                <h4 style="margin-top: 0; color: var(--moodys-blue);">Model 3: With Lagged ECI</h4>
                 <div style="font-size: 16px; overflow-x: auto; text-align: center; margin: 15px 0; color: var(--dark-grey);">
                     $$
                     \begin{aligned}
@@ -772,14 +787,13 @@
                     $$
                 </div>
                 <p style="font-size: 12px; color: #888; font-style: italic; margin-top: 10px;">
-                    Includes lagged dependent variable to capture persistence in economic complexity. Standard errors clustered by country.
-                </p>
+                    Note: Includes lagged dependent variable to capture persistence in economic complexity. Standard errors clustered by country.
             </div>
 
 
-            <div style="display: flex; gap: 20px; width: 100%;">
+            <div style="display: flex; gap: 20px; width: 100%; flex-wrap: wrap;">
                 
-                <div style="flex: 1; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #eee;">
+                <div style="flex: 1; min-width: 300px; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #eee;">
                     <h5 style="margin-top: 0; color: var(--moodys-blue);">Variable Definitions</h5>
                     <ul style="font-size: 14px; padding-left: 20px; line-height: 1.6;">
                         <li><strong>ECI:</strong> Economic Complexity Index</li>
@@ -790,7 +804,7 @@
                     </ul>
                 </div>
 
-                <div style="flex: 1; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #eee;">
+                <div style="flex: 1; min-width: 300px; background: #f9f9f9; padding: 20px; border-radius: 8px; border: 1px solid #eee;">
                     <h5 style="margin-top: 0; color: var(--moodys-blue);">Estimation Details</h5>
                     <ul style="font-size: 14px; padding-left: 20px; line-height: 1.6;">
                         <li><strong>Method:</strong> Ordinary Least Squares (OLS)</li>
@@ -801,9 +815,7 @@
                 </div>
             </div>
 
-        </div>
-
-                    <p>Select chart model to view in full screen.</p>
+            <h3 style="color: var(--lse-red); margin-bottom: 15px;">Econometric models results</h3>
 
             <div class="chart-grid">
                 
@@ -830,8 +842,6 @@
                     </div>
                     <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/regression_models_comparisons.png', 'iframe')">View Full Screen</button>
                 </div>
-
-
 
             </div>
 
@@ -883,44 +893,46 @@
                 </table>
             </div>
 
+            <h3 style="color: var(--lse-red); margin-bottom: 15px;">ML models results</h3>
+
             <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px;">Model 1. Variables at levels</p>
 
-            <div class="ml-images-row" style="display: flex; justify-content: center; gap: 30px;">
+            <div class="ml-images-row">
                 <div style="text-align: center;">
-                    <img src="ML_model_1_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_1_resource_rich.png', 'img')" alt="Model 1 comparison" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <img src="ML_model_1_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_1_resource_rich.png', 'img')" alt="Model 1 comparison">
                     <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model comparison</p>
                 </div>
                 
                 <div style="text-align: center;">
-                    <img src="coefs_model1_resource_rich.png" class="clickable-img" onclick="openModal('coefs_model1_resource_rich.png', 'img')" alt="Model 1 coefficients" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <img src="coefs_model1_resource_rich.png" class="clickable-img" onclick="openModal('coefs_model1_resource_rich.png', 'img')" alt="Model 1 coefficients">
                     <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model coefficients</p>
                 </div>
             </div>
 
-            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px;">Model 2. Adding ECI lag</p>
+            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px; margin-top: 40px;">Model 2. Adding ECI lag</p>
 
-            <div class="ml-images-row" style="display: flex; justify-content: center; gap: 30px;">
+            <div class="ml-images-row">
                 <div style="text-align: center;">
-                    <img src="ML_model_2_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_2_resource_rich.png', 'img')" alt="Model 2 comparison" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <img src="ML_model_2_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_2_resource_rich.png', 'img')" alt="Model 2 comparison">
                     <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model comparison</p>
                 </div>
                 
                 <div style="text-align: center;">
-                    <img src="coefs_model2_resource_rich.png" class="clickable-img" onclick="openModal('coefs_model2_resource_rich.png', 'img')" alt="Model 2 coefficients" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <img src="coefs_model2_resource_rich.png" class="clickable-img" onclick="openModal('coefs_model2_resource_rich.png', 'img')" alt="Model 2 coefficients">
                     <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model coefficients</p>
                 </div>
             </div>
 
-            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px;">Model 3. All lagged vars</p>
+            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px; margin-top: 40px;">Model 3. All lagged vars</p>
 
-            <div class="ml-images-row" style="display: flex; justify-content: center; gap: 30px;">
+            <div class="ml-images-row">
                 <div style="text-align: center;">
-                    <img src="ML_model_3_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_3_resource_rich.png', 'img')" alt="Model 2 comparison" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <img src="ML_model_3_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_3_resource_rich.png', 'img')" alt="Model 2 comparison">
                     <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model comparison</p>
                 </div>
                 
                 <div style="text-align: center;">
-                    <img src="coefs_model3_resource_rich.png" class="clickable-img" onclick="openModal('coefs_model3_resource_rich.png', 'img')" alt="Model 2 coefficients" style="cursor: pointer; transition: 0.3s; width: 150px; border: 1px solid #ddd; border-radius: 5px;">
+                    <img src="coefs_model3_resource_rich.png" class="clickable-img" onclick="openModal('coefs_model3_resource_rich.png', 'img')" alt="Model 2 coefficients">
                     <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model coefficients</p>
                 </div>
             </div>
@@ -928,71 +940,68 @@
         </div>
     </section>
 
+    
+    
     <section id="findings">
         <div class="content-wrapper">
             <div class="header-logos">Section 6</div>
             <h2>Key Findings: Econometrics vs. ML</h2>
-            <p>Comparing the structural inference of Panel Data with the predictive power of Machine Learning.</p>
+            <p style="text-align: center;">Comparing the structural inference of Panel Data with the predictive power of Machine Learning.</p>
 
-            <div style="background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 30px; border-left: 6px solid var(--moodys-blue);">
-                <h3 style="margin-top: 0; color: var(--moodys-blue);">1. Core Drivers of Industrial Upgrading</h3>
+            <div style="background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 30px; border-left: 6px solid var(--moodys-blue); width: 100%;">
+                <h3 style="margin-top: 0; color: var(--moodys-blue); text-align: left;">1. Core Drivers of Industrial Upgrading</h3>
                 <p>Both approaches (Fixed Effects Panel & Lasso) agree on the following variables:</p>
                 
-                <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                <div style="display: flex; justify-content: space-around; margin-top: 20px; flex-wrap: wrap; gap: 20px;">
                     <div style="text-align: center;">
-                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;"></div>
-                        <strong>Capital accumulation</strong><br><span style="color: #666; font-size: 14px;">(Positive & Significant)</span>
+                        <strong>[VARIABLE 1]</strong><br><span style="color: #666; font-size: 14px;">([Brief Description])</span>
                     </div>
                     <div style="text-align: center;">
-                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;"></div>
-                        <strong>Rule of Law</strong><br><span style="color: #666; font-size: 14px;">(Institutional Prerequisite)</span>
+                        <strong>[VARIABLE 2]</strong><br><span style="color: #666; font-size: 14px;">([Brief Description])</span>
                     </div>
                     <div style="text-align: center;">
-                        <div style="font-size: 40px; color: var(--lse-red); margin-bottom: 10px;"></div>
-                        <strong>Trade Openness</strong><br><span style="color: #666; font-size: 14px;">(Knowledge Spillover)</span>
+                        <strong>[VARIABLE 3]</strong><br><span style="color: #666; font-size: 14px;">([Brief Description])</span>
                     </div>
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; width: 100%;">
                 
                 <div style="background: #fdfdfd; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
                     <h4 style="color: var(--dark-grey); border-bottom: 2px solid var(--lse-red); padding-bottom: 10px;">Econometric Insight</h4>
-                    <p><strong>Note</strong></p>
+                    <p><strong>[Insert Main Insight Title]</strong></p>
                     <p style="font-size: 14px;">
-                        Note <em>note</em> note.
+                        [Describe the key finding from the econometric model here...]
                     </p>
                     <div style="background: #eee; padding: 10px; font-family: monospace; font-size: 12px; color: #333;">
-                        β (Oil Rents) = -0.04***<br>
-                        β (Interaction) = +0.02**
+                        [Optional: Insert Beta Coefficient or Stat]<br>
+                        [Optional: Insert Significance Level]
                     </div>
                 </div>
 
                 <div style="background: #fdfdfd; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
                     <h4 style="color: var(--dark-grey); border-bottom: 2px solid var(--moodys-blue); padding-bottom: 10px;">ML Insight (Lasso/Ridge/RF)</h4>
-                    <p><strong>Note</strong></p>
+                    <p><strong>[Insert Main Insight Title]</strong></p>
                     <p style="font-size: 14px;">
-                        Random Forest feature importance highlights that <strong>Human Capital</strong> becomes the dominant predictor only after a country reaches a certain GDP threshold.
+                        [Describe the key finding from the machine learning model here...]
                     </p>
                     <div style="background: #eef2f5; padding: 10px; font-family: monospace; font-size: 12px; color: #333;">
-                        Top Feature: Rule of Law<br>
-                        2nd Feature: Gross Capital Formation
+                        [Optional: Top Feature Importance]<br>
+                        [Optional: Secondary Feature]
                     </div>
                 </div>
 
             </div>
 
-            <div style="margin-top: 30px; padding: 20px; background: var(--lse-red); color: white; border-radius: 8px; text-align: center;">
+            <div style="margin-top: 30px; padding: 20px; background: var(--moodys-blue); color: white; border-radius: 8px; text-align: center; width: 100%;">
                 <h3 style="color: white; margin: 0 0 10px 0;">Key conclusions</h3>
                 <p style="margin: 0;">
-                    While <strong>Lasso</strong> helped to get 46 variables down to the 12 most predictive, the <strong>Panel Data</strong> model confirms the causal direction where institutional quality precedes the successful conversion of resource rents into value-added industries.
+                    [Insert your final synthesis comparison here. Explain how the combination of both methods provides a stronger conclusion for the client.]
                 </p>
             </div>
 
         </div>
     </section>
-    
-
 
     <section id="next-steps">
         <div class="content-wrapper">
@@ -1042,14 +1051,14 @@
         <div class="content-wrapper">
             <div class="header-logos">Section 8</div>
              <h2>Appendix</h2>
-        </div>
-
-        <div class="chart-card">
-                    <h3>ECI vs Mineral Production Evolution</h3>
-                    <div class="thumbnail-wrapper">
-                        <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/scatter_eci_roduction.html"></iframe>
-                    </div>
-                    <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/scatter_eci_roduction.html', 'iframe')">View Full Screen</button>
+             
+            <div class="chart-card" style="margin-top: 20px; width: 100%; max-width: 800px;">
+                <h3>ECI vs Mineral Production Evolution</h3>
+                <div class="thumbnail-wrapper">
+                    <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/scatter_eci_roduction.html"></iframe>
+                </div>
+                <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/scatter_eci_roduction.html', 'iframe')">View Full Screen</button>
+            </div>
         </div>
     </section>
 
@@ -1077,7 +1086,7 @@
                 // Create Image Element
                 var img = document.createElement("img");
                 img.src = source;
-                img.className = "modal-content modal-img";
+                img.className = "modal-content"; // Removed modal-img class as styling is now handled directly by modal-content
                 container.appendChild(img);
             } else if (type === 'iframe') {
                 // Create Iframe Element
@@ -1097,7 +1106,7 @@
 
         // Close modal if clicked outside content
         window.onclick = function(event) {
-            if (event.target == modal) {
+            if (event.target == modal || event.target == container) {
                 closeModal();
             }
         }
