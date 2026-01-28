@@ -1,28 +1,94 @@
-Economic Complexity in Resource-Rich Countries<br><table style="text-align:center"><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr>
-<tr><td style="text-align:left"></td><td colspan="2"><em>Dependent variable: log_ECI</em></td></tr><tr><td style="text-align:left"></td><tr><td></td><td colspan="1">Model 2</td><td colspan="1">Model 3</td></tr><tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td></tr>
-<tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regression Table</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 12px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 10px;
+            color: #333;
+        }
+        td {
+            padding: 4px 10px;
+        }
+        .title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #002A54; /* Moody's Blue */
+        }
+        .border-bottom {
+            border-bottom: 1px solid black;
+        }
+        .border-top {
+            border-top: 1px solid black;
+        }
+    </style>
+</head>
+<body>
 
-<tr><td style="text-align:left">Human Capital Index (log)</td><td>0.592<sup>***</sup></td><td>0.146<sup>***</sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.110)</td><td>(0.046)</td></tr>
-<tr><td style="text-align:left">Gross Fixed Capital Formation (log)</td><td>0.049<sup>**</sup></td><td>0.015<sup>***</sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.019)</td><td>(0.005)</td></tr>
-<tr><td style="text-align:left">Production Value (log)</td><td>-0.007<sup></sup></td><td>-0.003<sup></sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.010)</td><td>(0.003)</td></tr>
-<tr><td style="text-align:left">Political Stability</td><td>0.022<sup></sup></td><td>0.008<sup></sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.021)</td><td>(0.008)</td></tr>
-<tr><td style="text-align:left">Rule of Law</td><td>0.126<sup>*</sup></td><td>0.031<sup></sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.076)</td><td>(0.021)</td></tr>
-<tr><td style="text-align:left">Trade Openness (% GDP)</td><td>-0.000<sup></sup></td><td>-0.000<sup></sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.001)</td><td>(0.000)</td></tr>
-<tr><td style="text-align:left">HCI &times; Production (log)</td><td>0.108<sup>***</sup></td><td>0.027<sup>**</sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.033)</td><td>(0.011)</td></tr>
-<tr><td style="text-align:left">GFCF &times; Production (log)</td><td>0.000<sup></sup></td><td>-0.000<sup></sup></td></tr>
-<tr><td style="text-align:left"></td><td>(0.007)</td><td>(0.002)</td></tr>
-<tr><td style="text-align:left">Economic Complexity Index (t-1, log)</td><td></td><td>0.743<sup>***</sup></td></tr>
-<tr><td style="text-align:left"></td><td></td><td>(0.052)</td></tr>
+    <div class="title">Economic Complexity in Resource-Rich Countries</div>
+    
+    <table style="text-align:center">
+        <tr><td colspan="3" class="border-bottom"></td></tr>
+        <tr><td style="text-align:left"></td><td colspan="2"><em>Dependent variable: log_ECI</em></td></tr>
+        <tr><td style="text-align:left"></td><td>Model 2</td><td>Model 3</td></tr>
+        <tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td></tr>
+        <tr><td colspan="3" class="border-bottom"></td></tr>
 
-<td colspan="3" style="border-bottom: 1px solid black"></td></tr>
-<tr><td style="text-align: left">Observations</td><td>1350</td><td>1296</td></tr><tr><td style="text-align: left">R<sup>2</sup></td><td>0.346</td><td>0.714</td></tr><tr><td style="text-align: left">Adjusted R<sup>2</sup></td><td>0.342</td><td>0.712</td></tr><tr><td style="text-align: left">Residual Std. Error</td><td>0.182 (df=1341)</td><td>0.120 (df=1286)</td></tr><tr><td style="text-align: left">F Statistic</td><td>9.247<sup>***</sup> (df=8; 1341)</td><td>285.821<sup>***</sup> (df=9; 1286)</td></tr>
+        <tr><td style="text-align:left">Human Capital Index (log)</td><td>0.592<sup>***</sup></td><td>0.146<sup>***</sup></td></tr>
+        <tr><td style="text-align:left"></td><td>(0.110)</td><td>(0.046)</td></tr>
+        
+        <tr><td style="text-align:left">Gross Fixed Capital Formation (log)</td><td>0.049<sup>**</sup></td><td>0.015<sup>***</sup></td></tr>
+        <tr><td style="text-align:left"></td><td>(0.019)</td><td>(0.005)</td></tr>
+        
+        <tr><td style="text-align:left">Production Value (log)</td><td>-0.007</td><td>-0.003</td></tr>
+        <tr><td style="text-align:left"></td><td>(0.010)</td><td>(0.003)</td></tr>
+        
+        <tr><td style="text-align:left">Political Stability</td><td>0.022</td><td>0.008</td></tr>
+        <tr><td style="text-align:left"></td><td>(0.021)</td><td>(0.008)</td></tr>
+        
+        <tr><td style="text-align:left">Rule of Law</td><td>0.126<sup>*</sup></td><td>0.031</td></tr>
+        <tr><td style="text-align:left"></td><td>(0.076)</td><td>(0.021)</td></tr>
+        
+        <tr><td style="text-align:left">Trade Openness (% GDP)</td><td>-0.000</td><td>-0.000</td></tr>
+        <tr><td style="text-align:left"></td><td>(0.001)</td><td>(0.000)</td></tr>
+        
+        <tr><td style="text-align:left">HCI &times; Production (log)</td><td>0.108<sup>***</sup></td><td>0.027<sup>**</sup></td></tr>
+        <tr><td style="text-align:left"></td><td>(0.033)</td><td>(0.011)</td></tr>
+        
+        <tr><td style="text-align:left">GFCF &times; Production (log)</td><td>0.000</td><td>-0.000</td></tr>
+        <tr><td style="text-align:left"></td><td>(0.007)</td><td>(0.002)</td></tr>
+        
+        <tr><td style="text-align:left">Economic Complexity Index (t-1, log)</td><td></td><td>0.743<sup>***</sup></td></tr>
+        <tr><td style="text-align:left"></td><td></td><td>(0.052)</td></tr>
 
-<tr><td style="text-align: left">Clustered SE</td><td>Country</td><td>Country</td></tr><tr><td style="text-align: left">Interaction Terms</td><td>Yes</td><td>Yes</td></tr><tr><td style="text-align: left">Lagged Dependent Variable</td><td>No</td><td>Yes</td></tr><tr><td colspan="3" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align: left">Note:</td><td colspan="2" style="text-align: right"><sup>*</sup>p&lt;0.1; <sup>**</sup>p&lt;0.05; <sup>***</sup>p&lt;0.01</td></tr></table>
+        <tr><td colspan="3" class="border-bottom"></td></tr>
+        
+        <tr><td style="text-align: left">Observations</td><td>1350</td><td>1296</td></tr>
+        <tr><td style="text-align: left">R<sup>2</sup></td><td>0.346</td><td>0.714</td></tr>
+        <tr><td style="text-align: left">Adjusted R<sup>2</sup></td><td>0.342</td><td>0.712</td></tr>
+        <tr><td style="text-align: left">Residual Std. Error</td><td>0.182 (df=1341)</td><td>0.120 (df=1286)</td></tr>
+        <tr><td style="text-align: left">F Statistic</td><td>9.247<sup>***</sup></td><td>285.821<sup>***</sup></td></tr>
 
+        <tr><td colspan="3" style="height: 10px;"></td></tr> <tr><td style="text-align: left">Clustered SE</td><td>Country</td><td>Country</td></tr>
+        <tr><td style="text-align: left">Interaction Terms</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td style="text-align: left">Lagged Dependent Variable</td><td>No</td><td>Yes</td></tr>
+        
+        <tr><td colspan="3" class="border-bottom"></td></tr>
+        <tr><td style="text-align: left; font-style: italic;">Note:</td><td colspan="2" style="text-align: right"><sup>*</sup>p&lt;0.1; <sup>**</sup>p&lt;0.05; <sup>***</sup>p&lt;0.01</td></tr>
+    </table>
+</body>
+</html>
