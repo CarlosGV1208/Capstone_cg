@@ -133,7 +133,7 @@
         .header-logos { font-size: 14px; color: var(--moodys-blue); font-weight: bold; margin-bottom: 5px; text-transform: uppercase; width: 100%; text-align: center; }
 
         /* =========================================
-           TEAM SECTION (PORTADA)
+           TEAM SECTION (PORTADA) - UPDATED
            ========================================= */
         .team-container {
             display: flex;
@@ -153,19 +153,26 @@
         }
 
         .team-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%; /* Circular photo */
+            width: 130px;        /* Slightly wider */
+            height: 160px;       /* Vertical rectangle format */
+            border-radius: 4px;  /* Subtle rounded corners, not circular */
             object-fit: cover;
-            border: 4px solid var(--moodys-blue);
+            border: 1px solid #ccc; /* Subtle border */
             margin-bottom: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            
+            /* Professional Opacity/Filter Effect */
+            opacity: 0.85; 
+            filter: grayscale(20%); /* Slight desaturation for uniformity */
+            transition: all 0.3s ease;
         }
 
         .team-member:hover .team-photo {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            opacity: 1;           /* Full visibility */
+            filter: grayscale(0%); /* Full color */
             border-color: var(--lse-red);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
         }
 
         .team-link {
@@ -349,7 +356,7 @@
         }
 
         /* =========================================
-           AGENDA STYLES
+           AGENDA STYLES - UPDATED FOR NAVIGATION
            ========================================= */
         .agenda-grid {
             display: grid;
@@ -368,7 +375,7 @@
             align-items: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-left: 5px solid var(--moodys-blue);
-            cursor: default;
+            cursor: pointer; /* Change cursor to indicate interactivity */
         }
 
         .agenda-card:hover {
@@ -487,6 +494,68 @@
         .timeline-card ul { margin: 10px 0 0 0; padding-left: 20px; }
         .timeline-card li { margin-bottom: 5px; font-size: 16px; color: #555; }
 
+        /* =========================================
+           APPENDIX SPECIFIC STYLES
+           ========================================= */
+        .appendix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--moodys-blue);
+        }
+
+        /* Styles for the Equations 3-image preview */
+        .equations-preview {
+            display: flex;
+            gap: 5px;
+            height: 100%;
+            width: 100%;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+        
+        .eq-thumb {
+            flex: 1;
+            object-fit: cover;
+            height: 100%;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        
+        .equations-preview:hover .eq-thumb {
+            opacity: 1;
+        }
+
+        /* Container for the 3 images inside the Modal */
+        .modal-gallery-scroll {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+            max-height: 90vh; /* Allow scrolling inside modal */
+            width: 100%;
+            align-items: center;
+            padding: 20px;
+            background: white;
+        }
+
+        .modal-gallery-img {
+            width: 100%;
+            max-width: 800px; /* Readability limit */
+            height: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 1px solid #ddd;
+        }
+
     </style>
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -561,42 +630,42 @@
             <h2>Agenda meeting 3</h2>
             
             <div class="agenda-grid">
-                <div class="agenda-card">
+                <div class="agenda-card" onclick="location.href='#topic-overview'">
                     <span class="agenda-number">01</span>
                     <span class="agenda-text">Methodology plan recap</span>
                 </div>
 
-                <div class="agenda-card">
+                <div class="agenda-card" onclick="location.href='#master-data'">
                     <span class="agenda-number">02</span>
                     <span class="agenda-text">Master Data and ECI</span>
                 </div>
 
-                <div class="agenda-card">
+                <div class="agenda-card" onclick="location.href='#desc-stats'">
                     <span class="agenda-number">03</span>
                     <span class="agenda-text">Descriptive statistics</span>
                 </div>
 
-                <div class="agenda-card">
+                <div class="agenda-card" onclick="location.href='#econometrics'">
                     <span class="agenda-number">04</span>
                     <span class="agenda-text">Econometrics Approach</span>
                 </div>
 
-                <div class="agenda-card">
+                <div class="agenda-card" onclick="location.href='#ml-approach'">
                     <span class="agenda-number">05</span>
                     <span class="agenda-text">ML Approach: Clustering, Lasso, Ridge, Elastic Net</span>
                 </div>
 
-                <div class="agenda-card">
+                <div class="agenda-card" onclick="location.href='#findings'">
                     <span class="agenda-number">06</span>
                     <span class="agenda-text">Comparison of models</span>
                 </div>
 
-                <div class="agenda-card">
+                <div class="agenda-card" onclick="location.href='#next-steps'">
                     <span class="agenda-number">07</span>
                     <span class="agenda-text">Timeline and next steps</span>
                 </div>
 
-                <div class="agenda-card">
+                <div class="agenda-card" onclick="location.href='#appendix'">
                     <span class="agenda-number">08</span>
                     <span class="agenda-text">Appendix</span>
                 </div>
@@ -639,11 +708,84 @@
             <div class="header-logos"></div>
             <h2>The Economic Complexity Index (ECI)</h2>
             
-            <div style="margin-bottom: 30px; width: 100%;">
-                <ul>
-                    <li><strong>Definition</strong> </li>
-                    <li><strong>Why ECI?</strong> </li>
-                </ul>
+            <style>
+                .eci-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px;
+                    width: 100%;
+                    margin-bottom: 40px;
+                }
+                .eci-box {
+                    flex: 1;
+                    min-width: 300px;
+                    background: #fff;
+                    padding: 25px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+                    border-top: 5px solid #ccc;
+                    display: flex;
+                    flex-direction: column;
+                }
+                .eci-box h4 {
+                    margin-top: 0;
+                    margin-bottom: 15px;
+                    font-size: 20px;
+                    border-bottom: 1px solid #eee;
+                    padding-bottom: 10px;
+                }
+                .eci-text {
+                    font-size: 16px;
+                    color: #444;
+                    line-height: 1.5;
+                    margin-bottom: 10px;
+                }
+                .eci-highlight {
+                    background-color: #f8f9fa;
+                    padding: 10px;
+                    border-radius: 5px;
+                    font-size: 14px;
+                    color: #555;
+                    border-left: 3px solid #888;
+                    margin-top: auto; /* Pushes to bottom */
+                }
+                .eci-list-styled {
+                    padding-left: 20px;
+                    margin: 0;
+                }
+                .eci-list-styled li {
+                    margin-bottom: 10px;
+                    font-size: 16px;
+                }
+            </style>
+
+            <div class="eci-container">
+                
+                <div class="eci-box" style="border-top-color: var(--moodys-blue);">
+                    <h4 style="color: var(--moodys-blue);">What is ECI?</h4>
+                    <p class="eci-text">
+                        <strong>Definition:</strong> A measure developed by the Harvard Growth Lab to capture the degree of "know-how" accumulated by a country.
+                    </p>
+                    <p class="eci-text">
+                        It helps track the transition from <strong>low complexity</strong> activities (e.g., subsistence farming, oil extraction) towards <strong>high complexity</strong> activities (electronics, machinery, and chemicals).
+                    </p>
+                    <div class="eci-highlight" style="border-left-color: var(--moodys-blue);">
+                        <strong>How it works:</strong> Based on trade data using two key matrix measures: <em>Diversity</em> (number of products exported) and <em>Ubiquity</em> (number of countries exporting those products).
+                    </div>
+                </div>
+
+                <div class="eci-box" style="border-top-color: var(--lse-red);">
+                    <h4 style="color: var(--lse-red);">Why did we choose ECI?</h4>
+                    <ul class="eci-list-styled">
+                        <li>
+                            <strong>Better Coverage:</strong> Traditional value-added measures (e.g., WBI, TiVA) often have poor data coverage for developing countries. ECI covers a wider range.
+                        </li>
+                        <li>
+                            <strong>Granularity:</strong> The measure has strong theoretical foundations in the "product space," allowing us to identify specific strengths and weaknesses of a country at a detailed product level.
+                        </li>
+                    </ul>
+                </div>
+
             </div>
 
             <h3 style="text-align: center; color: var(--moodys-blue); margin-bottom: 20px;">ECI Performance in Resource-Rich Countries (1995-2019)</h3>
@@ -660,20 +802,21 @@
                                 <tr>
                                     <th>Country</th>
                                     <th class="num-cell">Change</th>
-                                    <th class="num-cell">Avg. Production Value Per Capita</th>
+                                    <th class="num-cell">Percentile (1995)</th>
+                                    <th class="num-cell">Percentile (2019)</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>Papua N.G.</td><td class="num-cell val-positive">+1.011</td><td class="num-cell">249.9</td></tr>
-                                <tr><td>Viet Nam</td><td class="num-cell val-positive">+0.985</td><td class="num-cell">71.3</td></tr>
-                                <tr><td>Bahrain</td><td class="num-cell val-positive">+0.903</td><td class="num-cell">2,677.9</td></tr>
-                                <tr><td>Malaysia</td><td class="num-cell val-positive">+0.876</td><td class="num-cell">613.4</td></tr>
-                                <tr><td>Iran</td><td class="num-cell val-positive">+0.855</td><td class="num-cell">880.2</td></tr>
-                                <tr><td>Angola</td><td class="num-cell val-positive">+0.710</td><td class="num-cell">780.6</td></tr>
-                                <tr><td>Kuwait</td><td class="num-cell val-positive">+0.676</td><td class="num-cell">12,613.7</td></tr>
-                                <tr><td>Qatar</td><td class="num-cell val-positive">+0.660</td><td class="num-cell">20,294.7</td></tr>
-                                <tr><td>Nigeria</td><td class="num-cell val-positive">+0.609</td><td class="num-cell">195.4</td></tr>
-                                <tr><td>Lao PDR</td><td class="num-cell val-positive">+0.552</td><td class="num-cell">86.4</td></tr>
+                                <tr><td>Papua New Guinea</td><td class="num-cell val-positive">+1.011</td><td class="num-cell">2</td><td class="num-cell">15</td></tr>
+                                <tr><td>Viet Nam</td><td class="num-cell val-positive">+0.985</td><td class="num-cell">31</td><td class="num-cell">83</td></tr>
+                                <tr><td>Bahrain</td><td class="num-cell val-positive">+0.903</td><td class="num-cell">63</td><td class="num-cell">96</td></tr>
+                                <tr><td>Malaysia</td><td class="num-cell val-positive">+0.876</td><td class="num-cell">96</td><td class="num-cell">100</td></tr>
+                                <tr><td>Iran, Islamic Rep.</td><td class="num-cell val-positive">+0.855</td><td class="num-cell">41</td><td class="num-cell">87</td></tr>
+                                <tr><td>Angola</td><td class="num-cell val-positive">+0.710</td><td class="num-cell">7</td><td class="num-cell">30</td></tr>
+                                <tr><td>Kuwait</td><td class="num-cell val-positive">+0.676</td><td class="num-cell">78</td><td class="num-cell">94</td></tr>
+                                <tr><td>Qatar</td><td class="num-cell val-positive">+0.660</td><td class="num-cell">54</td><td class="num-cell">85</td></tr>
+                                <tr><td>Nigeria</td><td class="num-cell val-positive">+0.609</td><td class="num-cell">6</td><td class="num-cell">7</td></tr>
+                                <tr><td>Lao PDR</td><td class="num-cell val-positive">+0.552</td><td class="num-cell">15</td><td class="num-cell">59</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -689,28 +832,27 @@
                                 <tr>
                                     <th>Country</th>
                                     <th class="num-cell">Change</th>
-                                    <th class="num-cell">Avg. Production Value Per Capita</th>
+                                    <th class="num-cell">Percentile (1995)</th>
+                                    <th class="num-cell">Percentile (2019)</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td>Mozambique</td><td class="num-cell val-negative">-0.395</td><td class="num-cell">32.2</td></tr>
-                                <tr><td>Bolivia</td><td class="num-cell val-negative">-0.399</td><td class="num-cell">281.6</td></tr>
-                                <tr><td>Algeria</td><td class="num-cell val-negative">-0.493</td><td class="num-cell">878.8</td></tr>
-                                <tr><td>Mongolia</td><td class="num-cell val-negative">-0.609</td><td class="num-cell">665.8</td></tr>
-                                <tr><td>Azerbaijan</td><td class="num-cell val-negative">-0.680</td><td class="num-cell">1,098.4</td></tr>
-                                <tr><td>Zimbabwe</td><td class="num-cell val-negative">-0.806</td><td class="num-cell">38.9</td></tr>
-                                <tr><td>Iraq</td><td class="num-cell val-negative">-1.053</td><td class="num-cell">1,048.5</td></tr>
-                                <tr><td>Libya</td><td class="num-cell val-negative">-1.116</td><td class="num-cell">2,910.1</td></tr>
-                                <tr><td>Chad</td><td class="num-cell val-negative">-1.134</td><td class="num-cell">95.3</td></tr>
-                                <tr><td>Venezuela</td><td class="num-cell val-negative">-1.560</td><td class="num-cell">1,466.0</td></tr>
+                                <tr><td>Liberia</td><td class="num-cell val-negative">-0.402</td><td class="num-cell">61</td><td class="num-cell">56</td></tr>
+                                <tr><td>Rwanda</td><td class="num-cell val-negative">-0.478</td><td class="num-cell">76</td><td class="num-cell">63</td></tr>
+                                <tr><td>Algeria</td><td class="num-cell val-negative">-0.493</td><td class="num-cell">57</td><td class="num-cell">43</td></tr>
+                                <tr><td>Mongolia</td><td class="num-cell val-negative">-0.609</td><td class="num-cell">50</td><td class="num-cell">24</td></tr>
+                                <tr><td>Azerbaijan</td><td class="num-cell val-negative">-0.680</td><td class="num-cell">81</td><td class="num-cell">57</td></tr>
+                                <tr><td>Zimbabwe</td><td class="num-cell val-negative">-0.806</td><td class="num-cell">85</td><td class="num-cell">50</td></tr>
+                                <tr><td>Iraq</td><td class="num-cell val-negative">-1.053</td><td class="num-cell">59</td><td class="num-cell">6</td></tr>
+                                <tr><td>Libya</td><td class="num-cell val-negative">-1.116</td><td class="num-cell">69</td><td class="num-cell">13</td></tr>
+                                <tr><td>Chad</td><td class="num-cell val-negative">-1.134</td><td class="num-cell">52</td><td class="num-cell">4</td></tr>
+                                <tr><td>Venezuela, RB</td><td class="num-cell val-negative">-1.560</td><td class="num-cell">94</td><td class="num-cell">26</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
             </div>
-            
-        </div>
     </section>
 
     <section id="desc-stats">
@@ -843,6 +985,14 @@
                     <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/regression_models_comparisons.png', 'iframe')">View Full Screen</button>
                 </div>
 
+                                <div class="chart-card">
+                    <h3>ECI and HCI</h3>
+                    <div class="thumbnail-wrapper">
+                        <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/eci_hci.html"></iframe>
+                    </div>
+                    <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/eci_hci.html', 'iframe')">View Full Screen</button>
+                </div>
+
             </div>
 
         </div>
@@ -895,25 +1045,11 @@
 
             <h3 style="color: var(--lse-red); margin-bottom: 15px;">ML models results</h3>
 
-            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px;">Model 1. Variables at levels</p>
-
-            <div class="ml-images-row">
-                <div style="text-align: center;">
-                    <img src="ML_model_1_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_1_resource_rich.png', 'img')" alt="Model 1 comparison">
-                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model comparison</p>
-                </div>
-                
-                <div style="text-align: center;">
-                    <img src="coefs_model1_resource_rich.png" class="clickable-img" onclick="openModal('coefs_model1_resource_rich.png', 'img')" alt="Model 1 coefficients">
-                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model coefficients</p>
-                </div>
-            </div>
-
             <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px; margin-top: 40px;">Model 2. Adding ECI lag</p>
 
             <div class="ml-images-row">
                 <div style="text-align: center;">
-                    <img src="ML_model_2_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_2_resource_rich.png', 'img')" alt="Model 2 comparison">
+                    <img src="ML_model2_resource_rich.png" class="clickable-img" onclick="openModal('ML_model2_resource_rich.png', 'img')" alt="Model 2 comparison">
                     <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model comparison</p>
                 </div>
                 
@@ -923,25 +1059,9 @@
                 </div>
             </div>
 
-            <p style="text-align: center; font-style: italic; color: #666; margin-bottom: 20px; margin-top: 40px;">Model 3. All lagged vars</p>
-
-            <div class="ml-images-row">
-                <div style="text-align: center;">
-                    <img src="ML_model_3_resource_rich.png" class="clickable-img" onclick="openModal('ML_model_3_resource_rich.png', 'img')" alt="Model 2 comparison">
-                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model comparison</p>
-                </div>
-                
-                <div style="text-align: center;">
-                    <img src="coefs_model3_resource_rich.png" class="clickable-img" onclick="openModal('coefs_model3_resource_rich.png', 'img')" alt="Model 2 coefficients">
-                    <p style="font-size: 14px; margin-top: 8px; font-weight: bold; color: var(--moodys-blue);">Model coefficients</p>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    
-    
     <section id="findings">
         <div class="content-wrapper">
             <div class="header-logos">Section 6</div>
@@ -949,19 +1069,11 @@
             <p style="text-align: center;">Comparing the structural inference of Panel Data with the predictive power of Machine Learning.</p>
 
             <div style="background: white; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 25px; margin-bottom: 30px; border-left: 6px solid var(--moodys-blue); width: 100%;">
-                <h3 style="margin-top: 0; color: var(--moodys-blue); text-align: left;">1. Core Drivers of Industrial Upgrading</h3>
-                <p>Both approaches (Fixed Effects Panel & Lasso) agree on the following variables:</p>
+                <h3 style="margin-top: 0; color: var(--moodys-blue); text-align: left;">1. Convergent Findings & Core Drivers</h3>
+                <p>Both highlight the importance of <strong>Rule of Law</strong> and <strong>Political Stability</strong>, reinforcing the academic literature on institutions. Additionally, <strong>Human Capital (HCI)</strong> proves critical in both approaches.</p>
                 
-                <div style="display: flex; justify-content: space-around; margin-top: 20px; flex-wrap: wrap; gap: 20px;">
-                    <div style="text-align: center;">
-                        <strong>[VARIABLE 1]</strong><br><span style="color: #666; font-size: 14px;">([Brief Description])</span>
-                    </div>
-                    <div style="text-align: center;">
-                        <strong>[VARIABLE 2]</strong><br><span style="color: #666; font-size: 14px;">([Brief Description])</span>
-                    </div>
-                    <div style="text-align: center;">
-                        <strong>[VARIABLE 3]</strong><br><span style="color: #666; font-size: 14px;">([Brief Description])</span>
-                    </div>
+                <div style="background: #f4f6f8; padding: 15px; border-radius: 5px; margin-top: 15px; border-left: 4px solid var(--lse-red);">
+                    <strong>Notable Discovery:</strong> The <em>HCI × Production</em> interaction is not only statistically significant in econometrics but also holds higher predictive power in ML models than traditional macro variables such as inflation, conflict, or interest rates.
                 </div>
             </div>
 
@@ -969,39 +1081,38 @@
                 
                 <div style="background: #fdfdfd; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
                     <h4 style="color: var(--dark-grey); border-bottom: 2px solid var(--lse-red); padding-bottom: 10px;">Econometric Insight</h4>
-                    <p><strong>[Insert Main Insight Title]</strong></p>
-                    <p style="font-size: 14px;">
-                        [Describe the key finding from the econometric model here...]
+                    
+                    <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px;">Literature Context:</p>
+                    <p style="font-size: 13px; color: #666; margin-top: 0;">
+                        We tested key channels suggested by literature regarding why resource-rich countries struggle to grow: Institutional Quality (Acemoglu & Robinson), Productive Investment (Venables), Macro Uncertainty (van der Ploeg), and Crowding-out effects (Auty, Sachs & Werner).
                     </p>
-                    <div style="background: #eee; padding: 10px; font-family: monospace; font-size: 12px; color: #333;">
-                        [Optional: Insert Beta Coefficient or Stat]<br>
-                        [Optional: Insert Significance Level]
-                    </div>
+
+                    <ul style="font-size: 14px; padding-left: 20px; line-height: 1.5;">
+                        <li><strong>Resource Curse:</strong> We reject the hypothesis. When controlling for fixed effects, resources do not inherently drag growth.</li>
+                        <li><strong>Solow Growth Model:</strong> Validated. <em>Human Capital Index</em> and <em>Gross Fixed Capital Formation</em> are positive and robustly significant.</li>
+                        <li><strong>Interaction Effect:</strong> The <em>HCI × Production</em> term is positive and significant, implying that returns to human capital are compounded for greater extractors of natural resources.</li>
+                    </ul>
                 </div>
 
                 <div style="background: #fdfdfd; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
-                    <h4 style="color: var(--dark-grey); border-bottom: 2px solid var(--moodys-blue); padding-bottom: 10px;">ML Insight (Lasso/Ridge/RF)</h4>
-                    <p><strong>[Insert Main Insight Title]</strong></p>
-                    <p style="font-size: 14px;">
-                        [Describe the key finding from the machine learning model here...]
+                    <h4 style="color: var(--dark-grey); border-bottom: 2px solid var(--moodys-blue); padding-bottom: 10px;">Data Science Insight</h4>
+                    
+                    <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px;">Predictive Ordering & Expanded Channels:</p>
+                    <p style="font-size: 13px; color: #666; margin-top: 0;">
+                        The ML approach allowed us to evaluate channels often overlooked in standard econometrics, such as infrastructure quality, IMF fiscal discipline, and lending rates.
                     </p>
-                    <div style="background: #eef2f5; padding: 10px; font-family: monospace; font-size: 12px; color: #333;">
-                        [Optional: Top Feature Importance]<br>
-                        [Optional: Secondary Feature]
-                    </div>
+
+                    <ul style="font-size: 14px; padding-left: 20px; line-height: 1.5;">
+                        <li><strong>Key Predictors:</strong> Results highlight the importance of functioning capital markets (access to credit), fiscal discipline, and political stability.</li>
+                        <li><strong>Dominant Factors:</strong> Human Capital Index and its interaction with production consistently rank as top features.</li>
+                    </ul>
                 </div>
 
-            </div>
-
-            <div style="margin-top: 30px; padding: 20px; background: var(--moodys-blue); color: white; border-radius: 8px; text-align: center; width: 100%;">
-                <h3 style="color: white; margin: 0 0 10px 0;">Key conclusions</h3>
-                <p style="margin: 0;">
-                    [Insert your final synthesis comparison here. Explain how the combination of both methods provides a stronger conclusion for the client.]
-                </p>
             </div>
 
         </div>
     </section>
+   
 
     <section id="next-steps">
         <div class="content-wrapper">
@@ -1052,13 +1163,63 @@
             <div class="header-logos">Section 8</div>
              <h2>Appendix</h2>
              
-            <div class="chart-card" style="margin-top: 20px; width: 100%; max-width: 800px;">
+            <div class="chart-card" style="width: 100%; max-width: 450px; margin: 0 auto;">
                 <h3>ECI vs Mineral Production Evolution</h3>
-                <div class="thumbnail-wrapper">
+                <div class="thumbnail-wrapper" style="height: 300px;">
                     <iframe class="thumbnail-iframe" src="https://carlosgv1208.github.io/Capstone_cg/presentations/scatter_eci_roduction.html"></iframe>
                 </div>
                 <button class="expand-btn" onclick="openModal('https://carlosgv1208.github.io/Capstone_cg/presentations/scatter_eci_roduction.html', 'iframe')">View Full Screen</button>
             </div>
+
+            <h3 style="margin-top: 50px; color: var(--moodys-blue); border-bottom: 1px solid #ddd; padding-bottom: 10px; width: 100%; text-align: center;">ML detailed model outputs</h3>
+
+            <div class="chart-card" style="margin-top: 30px; width: 100%; max-width: 900px;">
+                <h3>Machine Learning Mathematical Formulation</h3>
+                <div class="thumbnail-wrapper" style="height: 250px;"> 
+                    <div class="equations-preview">
+                        <img src="ML_equations_page-0001.jpg" class="eq-thumb" alt="Eq Page 1">
+                        <img src="ML_equations_page-0002.jpg" class="eq-thumb" alt="Eq Page 2">
+                        <img src="ML_equations_page-0003.jpg" class="eq-thumb" alt="Eq Page 3">
+                    </div>
+                </div>
+                <button class="expand-btn" onclick="openEquationGallery()">View Full Documentation (3 Pages)</button>
+            </div>
+
+        
+            <div class="appendix-grid">
+                
+                <div class="model-card">
+                    <h4 style="text-align: center; color: var(--dark-grey); margin-top: 0;">ML Model 1: Variables at Levels</h4>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                        <div style="text-align: center; width: 100%;">
+                            <img src="ML_model1_resource_rich.png" class="clickable-img" style="width: 100%; max-width: 250px;" onclick="openModal('ML_model1_resource_rich.png', 'img')" alt="Model 1 Comparison">
+                            <p style="font-size: 13px; margin-top: 5px; color: #666;">Model Comparison</p>
+                        </div>
+                        <div style="text-align: center; width: 100%;">
+                            <img src="coefs_model1_resource_rich.png" class="clickable-img" style="width: 100%; max-width: 250px;" onclick="openModal('coefs_model1_resource_rich.png', 'img')" alt="Model 1 Coefs">
+                            <p style="font-size: 13px; margin-top: 5px; color: #666;">Coefficients</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="model-card">
+                    <h4 style="text-align: center; color: var(--dark-grey); margin-top: 0;">ML Model 3: All Lagged Variables</h4>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                        <div style="text-align: center; width: 100%;">
+                            <img src="ML_model3_resource_rich.png" class="clickable-img" style="width: 100%; max-width: 250px;" onclick="openModal('ML_model3_resource_rich.png', 'img')" alt="Model 3 Comparison">
+                            <p style="font-size: 13px; margin-top: 5px; color: #666;">Model Comparison</p>
+                        </div>
+                        <div style="text-align: center; width: 100%;">
+                            <img src="coefs_model3_resource_rich.png" class="clickable-img" style="width: 100%; max-width: 250px;" onclick="openModal('coefs_model3_resource_rich.png', 'img')" alt="Model 3 Coefs">
+                            <p style="font-size: 13px; margin-top: 5px; color: #666;">Coefficients</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </section>
 
@@ -1110,6 +1271,37 @@
                 closeModal();
             }
         }
+
+        // Function specifically for the 3-page Equation Appendix
+        function openEquationGallery() {
+            var modal = document.getElementById("mediaModal");
+            var container = document.getElementById("modalContainer");
+            
+            modal.style.display = "block";
+            container.innerHTML = ""; // Clear content
+
+            // Create a scrollable container
+            var scrollWrapper = document.createElement("div");
+            scrollWrapper.className = "modal-gallery-scroll";
+
+            // Array of images
+            var images = [
+                "ML_equations_page-0001.jpg",
+                "ML_equations_page-0002.jpg",
+                "ML_equations_page-0003.jpg"
+            ];
+
+            // Loop to create images
+            images.forEach(function(src) {
+                var img = document.createElement("img");
+                img.src = src;
+                img.className = "modal-gallery-img";
+                scrollWrapper.appendChild(img);
+            });
+
+            container.appendChild(scrollWrapper);
+        }
+
     </script>
 
 </body>
